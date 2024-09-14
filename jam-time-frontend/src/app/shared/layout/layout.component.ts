@@ -1,0 +1,92 @@
+import {ChangeDetectorRef, Component} from '@angular/core';
+import {AsyncPipe, NgIf} from "@angular/common";
+import {MatBadge} from "@angular/material/badge";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatDivider} from "@angular/material/divider";
+import {MatIcon} from "@angular/material/icon";
+import {MatLine} from "@angular/material/core";
+import {MatListItem, MatListSubheaderCssMatStyler, MatNavList} from "@angular/material/list";
+import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
+import {MatProgressBar} from "@angular/material/progress-bar";
+import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
+import {MatToolbar} from "@angular/material/toolbar";
+import {MatTooltip} from "@angular/material/tooltip";
+import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {Subscription} from "rxjs";
+import {MediaMatcher} from "@angular/cdk/layout";
+import {SpinnerService} from "../../core/services/spinner.service";
+
+@Component({
+  selector: 'app-layout',
+  standalone: true,
+  imports: [
+    AsyncPipe,
+    MatBadge,
+    MatButton,
+    MatDivider,
+    MatIcon,
+    MatIconButton,
+    MatLine,
+    MatListItem,
+    MatListSubheaderCssMatStyler,
+    MatMenu,
+    MatMenuItem,
+    MatNavList,
+    MatProgressBar,
+    MatSidenav,
+    MatSidenavContainer,
+    MatSidenavContent,
+    MatToolbar,
+    MatTooltip,
+    NgIf,
+    RouterLinkActive,
+    RouterOutlet,
+    RouterLink,
+    MatMenuTrigger
+  ],
+  templateUrl: './layout.component.html',
+  styleUrl: './layout.component.scss'
+})
+export class LayoutComponent {
+  mobileQuery: MediaQueryList;
+  showSpinner: boolean = false;
+  userName: string = "";
+  isAdmin: boolean = false;
+  private readonly _mobileQueryListener: () => void;
+  private autoLogoutSubscription: Subscription = new Subscription;
+
+  constructor(private changeDetectorRef: ChangeDetectorRef,
+              private media: MediaMatcher,
+              public spinnerService: SpinnerService,
+              //private authService: AuthenticationService,
+              //private authGuard: AuthGuard
+  ) {
+
+    this.mobileQuery = this.media.matchMedia('(max-width: 1000px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    // tslint:disable-next-line: deprecation
+    this.mobileQuery.addEventListener('', this._mobileQueryListener);
+  }
+
+  ngOnInit(): void {
+    //const user = this.authService.getCurrentUser();
+
+    //this.isAdmin = user.isAdmin;
+    //this.userName = user.fullName;
+
+    // Auto log-out subscription
+    // const timer$ = timer(2000, 5000);
+    // this.autoLogoutSubscription = timer$.subscribe(() => {
+    //   this.authGuard.canActivate();
+    // });
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeEventListener('', this._mobileQueryListener);
+    this.autoLogoutSubscription.unsubscribe();
+  }
+
+  ngAfterViewInit(): void {
+    this.changeDetectorRef.detectChanges();
+  }
+}
