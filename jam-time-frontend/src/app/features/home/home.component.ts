@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {SpinnerService} from "../../core/services/spinner.service";
+import { Component, OnInit } from '@angular/core';
+import { SpinnerService } from "../../core/services/spinner.service";
 
 @Component({
   selector: 'app-home',
@@ -13,9 +13,9 @@ export class HomeComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-      this.spinnerService.show();
-      setTimeout(() => {
-        this.spinnerService.hide();
-      }, 3000);
-    }
+    this.spinnerService.show();
+    setTimeout(() => {
+      this.spinnerService.hide();
+    }, 3000);
+  }
 }
