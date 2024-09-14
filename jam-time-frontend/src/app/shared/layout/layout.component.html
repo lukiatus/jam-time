@@ -31,7 +31,7 @@
     <button mat-button [matMenuTriggerFor]="userMenu">
       <mat-icon>person</mat-icon>
       <span>
-        {{userName}} Username
+        {{userName}}
       </span>
     </button>
 
@@ -96,6 +96,8 @@
         </a>
 
         <mat-divider></mat-divider>
+
+        <h3 mat-subheader>Infó</h3>
 
         <a mat-list-item [routerLink]="['/about']" routerLinkActive="active">
           <mat-icon matListItemIcon>
