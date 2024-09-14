@@ -8,11 +8,11 @@ export class SpinnerService {
 
   public visibility = new BehaviorSubject(false);
 
-  public show() {
+  public show(): void {
     this.visibility.next(true);
   }
 
-  public hide() {
+  public hide(): void {
     this.visibility.next(false);
   }
 }
