@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from "./shared/layout/layout.component";
 import { HomeComponent } from "./features/home/home.component";
+import { ReservationOverviewComponent } from "./features/reservation-overview/reservation-overview.component";
 
 export const routes: Routes = [
   {
@@ -10,6 +11,10 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'overview',
+        component: ReservationOverviewComponent
       },
       {
         path: '**',
