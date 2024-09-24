@@ -1,27 +1,23 @@
 import { Component } from '@angular/core';
-import { NgSwitch, NgSwitchCase } from "@angular/common";
+import { NgClass, NgSwitch, NgSwitchCase } from "@angular/common";
 import {
   CalendarEvent,
   CalendarEventTimesChangedEvent,
   CalendarDateFormatter,
   CalendarModule,
-  CalendarMomentDateFormatter,
   CalendarView,
   DateAdapter,
-  DAYS_OF_WEEK,
-  MOMENT, CalendarUtils, CalendarA11y, CalendarEventTitleFormatter
+  CalendarUtils, CalendarA11y, CalendarEventTitleFormatter
 } from "angular-calendar";
 import { Subject } from "rxjs";
 import dayjs from "dayjs";
-import hu from 'dayjs/locale/hu';
 import { adapterFactory } from "angular-calendar/date-adapters/moment";
-
-dayjs.locale({
-  ...hu,
-  weekStart: DAYS_OF_WEEK.MONDAY,
-});
+import { MatButton } from "@angular/material/button";
+import { CustomDateFormatter } from "../../core/providers/custom-date-formatter.provioder";
+import localeHu from "dayjs/locale/hu";
 
 export function dayjsAdapterFactory() {
+  dayjs.locale(localeHu);
   return adapterFactory(dayjs);
 }
 
@@ -31,24 +27,22 @@ export function dayjsAdapterFactory() {
   imports: [
     NgSwitch,
     NgSwitchCase,
-    CalendarModule
+    CalendarModule,
+    MatButton,
+    NgClass
   ],
   providers: [
     CalendarUtils,
     CalendarA11y,
     CalendarEventTitleFormatter,
     {
-      provide: MOMENT,
-      useValue: dayjs,
-    },
-    {
       provide: DateAdapter,
       useFactory: dayjsAdapterFactory,
     },
     {
       provide: CalendarDateFormatter,
-      useClass: CalendarMomentDateFormatter,
-    }
+      useClass: CustomDateFormatter
+    },
   ],
   templateUrl: './reservation-overview.component.html',
   styleUrl: './reservation-overview.component.scss'
@@ -104,5 +98,13 @@ export class ReservationOverviewComponent {
       return iEvent;
     });
     this.handleEvent('Dropped or resized', event);
+  }
+
+  public closeOpenMonthViewDay(): void {
+    this.activeDayIsOpen = false;
+  }
+
+  public setView(view: CalendarView): void {
+    this.view = view;
   }
 }

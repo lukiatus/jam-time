@@ -1,0 +1,28 @@
+h2 {
+  margin: 0;
+}
+
+.container {
+  padding: 10px;
+  background-color: white;
+}
+
+.calendar-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  row-gap: 10px;
+}
+
+.active {
+  border: 5px solid red;
+}
