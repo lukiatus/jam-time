@@ -12,9 +12,11 @@ import {
 import { Subject } from "rxjs";
 import dayjs from "dayjs";
 import { adapterFactory } from "angular-calendar/date-adapters/moment";
-import { MatButton } from "@angular/material/button";
+import { MatButton, MatMiniFabButton } from "@angular/material/button";
+import { MatIconModule } from '@angular/material/icon';
 import { CustomDateFormatter } from "../../core/providers/custom-date-formatter.provioder";
 import localeHu from "dayjs/locale/hu";
+import { MatTooltip } from "@angular/material/tooltip";
 
 export function dayjsAdapterFactory() {
   dayjs.locale(localeHu);
@@ -29,7 +31,10 @@ export function dayjsAdapterFactory() {
     NgSwitchCase,
     CalendarModule,
     MatButton,
-    NgClass
+    NgClass,
+    MatIconModule,
+    MatMiniFabButton,
+    MatTooltip
   ],
   providers: [
     CalendarUtils,
