@@ -9,7 +9,9 @@ import { SpinnerService } from "../../core/services/spinner.service";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  public constructor(private spinnerService: SpinnerService) {
+  public constructor(
+    private spinnerService: SpinnerService
+  ) {
   }
 
   public ngOnInit(): void {

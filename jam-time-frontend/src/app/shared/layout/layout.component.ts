@@ -49,15 +49,15 @@ import { AuthenticationService } from "../../core/services/authentication.servic
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
-  private readonly _mobileQueryListener: () => void;
-  private autoLogoutSubscription: Subscription = new Subscription;
   public mobileQuery: MediaQueryList;
   public userName: string = "";
+  private readonly _mobileQueryListener: () => void;
+  private autoLogoutSubscription: Subscription = new Subscription;
 
   public constructor(private changeDetectorRef: ChangeDetectorRef,
                      private media: MediaMatcher,
                      public spinnerService: SpinnerService,
-                     private authService: AuthenticationService,
+                     public authService: AuthenticationService,
                      //private authGuard: AuthGuard
   ) {
 
@@ -67,11 +67,6 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   public ngOnInit(): void {
-    this.userName = this.authService.getCurrentUser();
-
-    //this.isAdmin = user.isAdmin;
-    //this.userName = user.fullName;
-
     // Auto log-out subscription
     // const timer$ = timer(2000, 5000);
     // this.autoLogoutSubscription = timer$.subscribe(() => {

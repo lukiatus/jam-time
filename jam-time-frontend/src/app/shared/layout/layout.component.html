@@ -29,21 +29,28 @@
     </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="userMenu">
-      <mat-icon>person</mat-icon>
-      <span>
-        {{userName}}
+      <mat-icon *ngIf="authService.isAuthenticated()">person</mat-icon>
+      <mat-icon *ngIf="!authService.isAuthenticated()">person_off</mat-icon>
+      <span *ngIf="authService.isAuthenticated()">
+        {{authService.emailAddress()}}
       </span>
     </button>
 
     <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
-      <a mat-menu-item [routerLink]="['/account/profile']">
+      <a mat-menu-item [routerLink]="['/account/profile']" *ngIf="authService.isAuthenticated()">
         <mat-icon>person</mat-icon>
         <span>Account</span>
       </a>
 
-      <a mat-menu-item [routerLink]="['/auth/login']">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Log out</span>
+      <a mat-menu-item *ngIf="!authService.isAuthenticated()" (click)="authService.signIn()">
+<!--        <mat-icon>login</mat-icon>-->
+<!--        <span>Belépés</span>-->
+        <div id="buttonDiv"></div>
+      </a>
+
+      <a mat-menu-item *ngIf="authService.isAuthenticated()" (click)="authService.signOut()">
+        <mat-icon>logout</mat-icon>
+        <span >Kilépés</span>
       </a>
     </mat-menu>
   </mat-toolbar>
@@ -120,5 +127,4 @@
 
     </mat-sidenav-content>
   </mat-sidenav-container>
-
 </div>
