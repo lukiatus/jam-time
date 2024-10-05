@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from "../../core/services/spinner.service";
+import { provideHttpClient } from "@angular/common/http";
+import { AuthenticationService } from "../../core/services/authentication/authentication.service";
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  standalone: true
 })
 export class HomeComponent implements OnInit {
   public constructor(
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    public authService: AuthenticationService
   ) {
   }
 

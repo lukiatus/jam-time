@@ -42,13 +42,13 @@
         <span>Account</span>
       </a>
 
-      <a mat-menu-item *ngIf="!authService.isAuthenticated()" (click)="authService.signIn()">
+      <a mat-menu-item *ngIf="!authService.isAuthenticated()" (click)="signIn()">
 <!--        <mat-icon>login</mat-icon>-->
 <!--        <span>Belépés</span>-->
         <div id="buttonDiv"></div>
       </a>
 
-      <a mat-menu-item *ngIf="authService.isAuthenticated()" (click)="authService.signOut()">
+      <a mat-menu-item *ngIf="authService.isAuthenticated()" (click)="signOut()">
         <mat-icon>logout</mat-icon>
         <span >Kilépés</span>
       </a>

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { AsyncPipe, NgIf } from "@angular/common";
 import { MatBadge } from "@angular/material/badge";
 import { MatButton, MatIconButton } from "@angular/material/button";
@@ -15,7 +15,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { Subscription } from "rxjs";
 import { MediaMatcher } from "@angular/cdk/layout";
 import { SpinnerService } from "../../core/services/spinner.service";
-import { AuthenticationService } from "../../core/services/authentication.service";
+import { AuthenticationService } from "../../core/services/authentication/authentication.service";
 
 @Component({
   selector: 'app-layout',
@@ -48,11 +48,10 @@ import { AuthenticationService } from "../../core/services/authentication.servic
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
-  public mobileQuery: MediaQueryList;
-  public userName: string = "";
+export class LayoutComponent implements OnDestroy, AfterViewInit {
   private readonly _mobileQueryListener: () => void;
   private autoLogoutSubscription: Subscription = new Subscription;
+  public mobileQuery: MediaQueryList;
 
   public constructor(private changeDetectorRef: ChangeDetectorRef,
                      private media: MediaMatcher,
@@ -66,14 +65,6 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     this.mobileQuery.addEventListener('', this._mobileQueryListener);
   }
 
-  public ngOnInit(): void {
-    // Auto log-out subscription
-    // const timer$ = timer(2000, 5000);
-    // this.autoLogoutSubscription = timer$.subscribe(() => {
-    //   this.authGuard.canActivate();
-    // });
-  }
-
   public ngOnDestroy(): void {
     this.mobileQuery.removeEventListener('', this._mobileQueryListener);
     this.autoLogoutSubscription.unsubscribe();
@@ -81,5 +72,14 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();
+  }
+
+  public signIn(): void {
+    this.spinnerService.show();
+    this.authService.signIn();
+  }
+
+  public signOut(): void {
+    this.authService.signOut();
   }
 }
