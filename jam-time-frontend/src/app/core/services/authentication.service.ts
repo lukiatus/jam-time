@@ -19,7 +19,7 @@ export class AuthenticationService {
   public signOut(): void {
     google.accounts.id.disableAutoSelect();
     this.isAuthenticated.set(false);
-    google.accounts.id.revoke(this.emailAddress(), (_: any): void => {
+    google.accounts.id.revoke(this.emailAddress(), (): void => {
       localStorage.removeItem('idToken');
       localStorage.removeItem('userEmail');
     });
