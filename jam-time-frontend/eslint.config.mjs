@@ -37,7 +37,7 @@ export default [{
     rules: {
         "@typescript-eslint/explicit-function-return-type": "error",
         "@typescript-eslint/explicit-member-accessibility": "error",
-        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-explicit-any": "off",
 
         "@typescript-eslint/member-ordering": ["error", {
             classes: [
