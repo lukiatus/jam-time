@@ -1,6 +1,0 @@
-@jam_time_backend_HostAddress = http://localhost:5004
-
-GET {{jam_time_backend_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

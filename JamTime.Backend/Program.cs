@@ -1,5 +1,7 @@
+using System.Text;
 using Google.Apis.Auth;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +20,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthentication()
-    .AddJwtBearer(opt =>
+    .AddJwtBearer(options =>
     {
-        //opt.
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey =
+                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Authentication:Google:ClientSecret"])), // Change this to your secret key
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
     });
 
 builder.Services.AddAuthorization();
@@ -48,11 +57,6 @@ app.MapGet("/get", () => """
 
 app.MapPost("/login", async ([FromHeader(Name = "GoogleIdToken")] string idToken) =>
 {
-    // if (!request.Headers.TryGetValue("GoogleIdToken", out var idToken))
-    // {
-    //     return Results.BadRequest("Token is missing.");
-    // }
-
     var settings = new GoogleJsonWebSignature.ValidationSettings()
     {
         Audience = new List<string> { app.Configuration["Authentication:Google:ClientId"] }

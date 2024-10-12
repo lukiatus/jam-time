@@ -32,7 +32,7 @@ export class AuthenticationService {
 
   private loadGoogleSDK(): void {
     const script = document.createElement('script');
-    script.src = 'https://accounts.google.com/gsi/client';
+    script.src = 'https://accounts.google.com/gsi/client?hl=hu';
     script.onload = (): void => this.initializeGsi();
     document.body.appendChild(script);
   }
@@ -42,10 +42,6 @@ export class AuthenticationService {
       client_id: appSettings.clientId,
       callback: this.handleCredentialResponse.bind(this),
     });
-    google.accounts.id.renderButton(
-      document.getElementById("buttonDiv"),
-      {theme: "outline", size: "large"}
-    );
   }
 
   // TODO: make it private again!!!

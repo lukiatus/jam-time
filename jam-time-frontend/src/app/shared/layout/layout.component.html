@@ -43,9 +43,8 @@
       </a>
 
       <a mat-menu-item *ngIf="!authService.isAuthenticated()" (click)="signIn()">
-<!--        <mat-icon>login</mat-icon>-->
-<!--        <span>Belépés</span>-->
-        <div id="buttonDiv"></div>
+        <mat-icon>login</mat-icon>
+        <span>Belépés Google fiókkal...</span>
       </a>
 
       <a mat-menu-item *ngIf="authService.isAuthenticated()" (click)="signOut()">
