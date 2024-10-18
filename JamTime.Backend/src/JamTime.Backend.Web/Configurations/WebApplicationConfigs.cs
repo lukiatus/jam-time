@@ -38,8 +38,7 @@ public static class WebApplicationConfigs
     try
     {
       var context = services.GetRequiredService<AppDbContext>();
-      //          context.Database.Migrate();
-      context.Database.EnsureCreated();
+      await context.Database.EnsureCreatedAsync();
       await SeedData.InitializeAsync(context);
     }
     catch (Exception ex)
