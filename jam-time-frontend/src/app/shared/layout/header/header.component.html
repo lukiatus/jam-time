@@ -3,8 +3,8 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  <a mat-anchor [routerLink]="['/']" matTooltip="Home" color="primary">
-      JamTime
+  <a [routerLink]="['/']" matTooltip="Home" color="primary">
+    JamTime
   </a>
 
   <span class="navbar-spacer"></span>
@@ -23,26 +23,18 @@
     </a>
   </mat-menu>
 
-  <button mat-flat-button [matMenuTriggerFor]="userMenu" matTooltip="Jelentkezz be!!" *ngIf="!authService.isAuthenticated()">
-    <mat-icon>person_off</mat-icon>
-    Bejelentkezés...
-  </button>
   <button mat-button [matMenuTriggerFor]="userMenu" [matTooltip]="authService.emailAddress()"
           *ngIf="authService.isAuthenticated()">
     <mat-icon>person</mat-icon>
     {{ authService.userName() }}
   </button>
 
+  <div id="googleLoginButton" [ngStyle]="{'visibility': authService.isAuthenticated() ? 'collapse' : 'visible'}"></div>
 
   <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
     <a mat-menu-item [routerLink]="['/account/profile']" *ngIf="authService.isAuthenticated()">
       <mat-icon>person</mat-icon>
       <span>Account</span>
-    </a>
-
-    <a mat-menu-item *ngIf="!authService.isAuthenticated()" (click)="authService.signIn()">
-      <mat-icon>login</mat-icon>
-      <span>Belépés Google fiókkal...</span>
     </a>
 
     <a mat-menu-item *ngIf="authService.isAuthenticated()" (click)="authService.signOut()">

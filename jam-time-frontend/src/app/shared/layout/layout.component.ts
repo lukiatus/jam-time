@@ -15,7 +15,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { Subscription } from "rxjs";
 import { MediaMatcher } from "@angular/cdk/layout";
 import { SpinnerService } from "../../core/services/spinner.service";
-import { AuthenticationService } from "../../core/services/authentication/authentication.service";
 import { HeaderComponent } from "./header/header.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 
@@ -56,7 +55,6 @@ import { NavbarComponent } from "./navbar/navbar.component";
 export class LayoutComponent implements OnDestroy, AfterViewInit {
   public mobileQuery: MediaQueryList;
   public spinnerService = inject(SpinnerService);
-  public authService = inject(AuthenticationService);
   private readonly _mobileQueryListener: () => void;
   private autoLogoutSubscription: Subscription = new Subscription;
   private changeDetectorRef = inject(ChangeDetectorRef);
@@ -75,14 +73,5 @@ export class LayoutComponent implements OnDestroy, AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();
-  }
-
-  public signIn(): void {
-    this.spinnerService.show();
-    this.authService.signIn();
-  }
-
-  public signOut(): void {
-    this.authService.signOut();
   }
 }

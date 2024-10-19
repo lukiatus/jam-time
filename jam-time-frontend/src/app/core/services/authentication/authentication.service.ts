@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { appSettings } from "../../../../app.settings";
 import { jwtDecode } from "jwt-decode";
 import { AuthenticationHttpService } from "./authentication.http.service";
@@ -12,8 +12,9 @@ export class AuthenticationService {
   public isAuthenticated = signal(false);
   public emailAddress = computed<string>(() => localStorage.getItem('userEmail') ?? '');
   public userName = computed<string>(() => localStorage.getItem('userName') ?? '');
+  private httpService = inject(AuthenticationHttpService);
 
-  public constructor(private httpService: AuthenticationHttpService) {
+  public constructor() {
     this.loadGoogleSDK();
     this.isAuthenticated.set(localStorage.getItem('idToken') !== null);
   }
@@ -28,21 +29,10 @@ export class AuthenticationService {
     });
   }
 
-  public signIn(): void {
-    google.accounts.id.prompt();
-  }
-
-  // TODO: make it private again!!!
-  public loadUserData(): void {
-    this.httpService.get(localStorage.getItem('idToken')).subscribe(res => {
-      console.log(res);
-    })
-  }
-
-  public valami(): void {
-    this.httpService.getValami().subscribe(() => {
-      console.log("DONE");
-    })
+  private loadUserData(): void {
+    // this.httpService.get(localStorage.getItem('idToken')).subscribe(res => {
+    //   console.log(res);
+    // })
   }
 
   private loadGoogleSDK(): void {
@@ -55,8 +45,12 @@ export class AuthenticationService {
   private initializeGsi(): void {
     google.accounts.id.initialize({
       client_id: appSettings.clientId,
-      callback: this.handleCredentialResponse.bind(this),
+      callback: this.handleCredentialResponse.bind(this)
     });
+    google.accounts.id.renderButton(
+      document.getElementById("googleLoginButton"),
+      {theme: "outline", shape: "pill", size: "medium"}
+    );
   }
 
   private handleCredentialResponse(response: any): void {

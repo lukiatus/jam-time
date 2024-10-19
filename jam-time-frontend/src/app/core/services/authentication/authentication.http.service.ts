@@ -14,8 +14,5 @@ export class AuthenticationHttpService {
       }
     });
   }
-
-  public getValami(): Observable<any> {
-    return this.http.get("/get");
-  }
 }
+

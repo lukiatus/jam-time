@@ -5,7 +5,7 @@ import { MatIcon } from "@angular/material/icon";
 import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
 import { MatToolbar } from "@angular/material/toolbar";
 import { MatTooltip } from "@angular/material/tooltip";
-import { NgIf } from "@angular/common";
+import { NgIf, NgStyle } from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { AuthenticationService } from "../../../core/services/authentication/authentication.service";
 
@@ -23,7 +23,8 @@ import { AuthenticationService } from "../../../core/services/authentication/aut
     MatTooltip,
     NgIf,
     RouterLink,
-    MatMenuTrigger
+    MatMenuTrigger,
+    NgStyle
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
