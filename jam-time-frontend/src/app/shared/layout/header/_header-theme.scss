@@ -3,7 +3,7 @@
 @mixin theme($theme) {
   app-header {
     .mat-toolbar {
-      background: mat.get-theme-color($theme, primary-container);
+      background-color: mat.get-theme-color($theme, primary-container);
       color: mat.get-theme-color($theme, primary);
     }
   }

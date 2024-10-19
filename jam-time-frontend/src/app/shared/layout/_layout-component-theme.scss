@@ -1,0 +1,8 @@
+@use '../../../../node_modules/@angular/material/index' as mat;
+
+@mixin theme($theme) {
+
+  mat-sidenav {
+      //background-color: mat.get-theme-color($theme, surface-container) !important;
+  }
+}

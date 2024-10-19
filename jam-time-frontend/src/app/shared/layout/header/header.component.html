@@ -1,9 +1,9 @@
 <mat-toolbar>
-  <button mat-icon-button>
+  <button mat-icon-button (click)="toggleSidenav.emit()">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <a [routerLink]="['/']" matTooltip="Home">
+  <a mat-anchor [routerLink]="['/']" matTooltip="Home" color="primary">
       JamTime
   </a>
 

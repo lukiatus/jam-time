@@ -1,7 +1,7 @@
 <div class="navbar-container">
   <mat-progress-bar mode="indeterminate" *ngIf="spinnerService.visibility | async"></mat-progress-bar>
 
-  <app-header></app-header>
+  <app-header (toggleSidenav)="sidenav.toggle()"></app-header>
 
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" opened>

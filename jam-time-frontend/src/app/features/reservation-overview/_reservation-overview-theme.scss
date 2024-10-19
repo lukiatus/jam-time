@@ -1,0 +1,9 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+
+    .cal-header {
+      //background-color: mat.get-theme-color($theme, surface-container-low);
+    }
+
+}

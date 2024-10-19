@@ -12,7 +12,7 @@ import {
 import { Subject } from "rxjs";
 import dayjs from "dayjs";
 import { adapterFactory } from "angular-calendar/date-adapters/moment";
-import { MatButton, MatMiniFabButton } from "@angular/material/button";
+import { MatButton, MatIconButton, MatMiniFabButton } from "@angular/material/button";
 import { MatIconModule } from '@angular/material/icon';
 import { CustomDateFormatter } from "../../core/providers/custom-date-formatter.provioder";
 import localeHu from "dayjs/locale/hu";
@@ -34,7 +34,8 @@ export function dayjsAdapterFactory(): DateAdapter {
     NgClass,
     MatIconModule,
     MatMiniFabButton,
-    MatTooltip
+    MatTooltip,
+    MatIconButton
   ],
   providers: [
     CalendarUtils,
@@ -72,7 +73,6 @@ export class ReservationOverviewComponent {
   protected readonly CalendarView = CalendarView;
 
   public dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {
-    console.log(date)
     if (dayjs(date).isSame(this.viewDate, 'month')) {
       this.activeDayIsOpen = !((dayjs(date).isSame(this.viewDate, 'day') && this.activeDayIsOpen) || events.length === 0);
       this.viewDate = date;

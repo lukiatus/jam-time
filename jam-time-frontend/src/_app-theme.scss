@@ -1,6 +1,10 @@
 @use '@angular/material' as mat;
 @use './app/shared/layout/header/header-theme';
+@use './app/shared/layout/layout-component-theme';
+@use './app/features/reservation-overview/reservation-overview-theme';
 
 @mixin theme($theme) {
-  @include header-theme.theme($theme)
+  @include header-theme.theme($theme);
+  @include layout-component-theme.theme($theme);
+  @include reservation-overview-theme.theme($theme);
 }
