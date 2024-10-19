@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { MatBadge } from "@angular/material/badge";
 import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
@@ -29,6 +29,6 @@ import { AuthenticationService } from "../../../core/services/authentication/aut
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  public constructor(public authService: AuthenticationService) {
-  }
+  public authService = inject(AuthenticationService);
+  @Output() public toggleSidenav = new EventEmitter<void>();
 }

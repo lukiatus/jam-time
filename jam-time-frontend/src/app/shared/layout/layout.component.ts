@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, inject, OnDestroy } from '@angular/core';
 import { AsyncPipe, NgIf } from "@angular/common";
 import { MatBadge } from "@angular/material/badge";
 import { MatButton, MatFabButton, MatIconButton } from "@angular/material/button";
@@ -55,18 +55,16 @@ import { NavbarComponent } from "./navbar/navbar.component";
 })
 export class LayoutComponent implements OnDestroy, AfterViewInit {
   public mobileQuery: MediaQueryList;
+  public spinnerService = inject(SpinnerService);
+  public authService = inject(AuthenticationService);
   private readonly _mobileQueryListener: () => void;
   private autoLogoutSubscription: Subscription = new Subscription;
+  private changeDetectorRef = inject(ChangeDetectorRef);
+  private media = inject(MediaMatcher);
 
-  public constructor(private changeDetectorRef: ChangeDetectorRef,
-                     private media: MediaMatcher,
-                     public spinnerService: SpinnerService,
-                     public authService: AuthenticationService,
-                     //private authGuard: AuthGuard
-  ) {
-
+  public constructor() {
     this.mobileQuery = this.media.matchMedia('(max-width: 1000px)');
-    this._mobileQueryListener = (): void => changeDetectorRef.detectChanges();
+    this._mobileQueryListener = (): void => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addEventListener('', this._mobileQueryListener);
   }
 
