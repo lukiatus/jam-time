@@ -7,12 +7,8 @@ export class AuthenticationHttpService {
   public constructor(private http: HttpClient) {
   }
 
-  public get(idToken: any): Observable<string> {
-    return this.http.post<string>("https://localhost:7004/login", null, {
-      headers: {
-        GoogleIdToken: `${idToken}`
-      }
-    });
+  public auth(idToken: any): Observable<string> {
+    return this.http.post<string>("https://localhost:57679/auth/google-login", {idToken: `${idToken}`});
   }
 }
 

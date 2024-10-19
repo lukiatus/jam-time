@@ -7,6 +7,18 @@ using Serilog.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var allowedOrigins = builder.Configuration.GetSection("CorsSettings:AllowedOrigins").Get<string[]>();
+builder.Services.AddCors(options =>
+{
+  options.AddDefaultPolicy(builder =>
+  {
+    builder.WithOrigins(allowedOrigins!)
+      .AllowAnyMethod()
+      .AllowAnyHeader()
+      .AllowCredentials();
+  });
+});
+
 var logger = Log.Logger = new LoggerConfiguration()
   .Enrich.FromLogContext()
   .WriteTo.Console()
@@ -17,16 +29,16 @@ logger.Information("Starting web host");
 builder.AddLoggerConfigs();
 
 var appLogger = new SerilogLoggerFactory(logger)
-    .CreateLogger<Program>();
+  .CreateLogger<Program>();
 
 builder.Services.AddOptionConfigs(builder.Configuration, appLogger, builder);
 builder.Services.AddServiceConfigs(appLogger, builder);
 
 builder.Services.AddFastEndpoints()
-                .SwaggerDocument(o =>
-                {
-                  o.ShortSchemaNames = true;
-                });
+  .SwaggerDocument(o =>
+  {
+    o.ShortSchemaNames = true;
+  });
 
 var app = builder.Build();
 
@@ -35,4 +47,6 @@ await app.UseAppMiddleware();
 app.Run();
 
 // Make the implicit Program.cs class public, so integration tests can reference the correct assembly for host building
-public partial class Program { }
+public partial class Program
+{
+}

@@ -21,9 +21,10 @@ public static class WebApplicationConfigs
     }
 
     app.UseFastEndpoints()
-        .UseSwaggerGen(); // Includes AddFileServer and static files middleware
+      .UseSwaggerGen(); // Includes AddFileServer and static files middleware
 
     app.UseHttpsRedirection();
+    app.UseCors();
 
     await SeedDatabase(app);
 

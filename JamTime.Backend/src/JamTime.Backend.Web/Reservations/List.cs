@@ -10,7 +10,7 @@ public class List : EndpointWithoutRequest<ReservationListResponse>
     AllowAnonymous();
   }
 
-  public override async Task HandleAsync(CancellationToken cancellationToken)
+  public override async Task HandleAsync(CancellationToken ct)
   {
     var reservations = new List<Reservation>()
     {
@@ -19,6 +19,6 @@ public class List : EndpointWithoutRequest<ReservationListResponse>
         DateTimeOffset.UtcNow.AddHours(2).Date),
     };
 
-    await SendAsync(new() { Reservations = reservations }, cancellation: cancellationToken);
+    await SendAsync(new() { Reservations = reservations }, cancellation: ct);
   }
 }

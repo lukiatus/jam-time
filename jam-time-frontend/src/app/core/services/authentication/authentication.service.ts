@@ -29,10 +29,10 @@ export class AuthenticationService {
     });
   }
 
-  private loadUserData(): void {
-    // this.httpService.get(localStorage.getItem('idToken')).subscribe(res => {
-    //   console.log(res);
-    // })
+  private authenticateWithServer(): void {
+    this.httpService.auth(localStorage.getItem('idToken')).subscribe(res => {
+      console.log(res);
+    })
   }
 
   private loadGoogleSDK(): void {
@@ -57,7 +57,7 @@ export class AuthenticationService {
     const idToken = response.credential;
     this.storeTokenDataInLocalStore(idToken);
     this.isAuthenticated.set(true);
-    this.loadUserData();
+    this.authenticateWithServer();
   }
 
   private storeTokenDataInLocalStore(idToken: string): void {
