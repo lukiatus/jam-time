@@ -1,0 +1,6 @@
+@use '@angular/material' as mat;
+@use './app/shared/layout/header/header-theme';
+
+@mixin theme($theme) {
+  @include header-theme.theme($theme)
+}

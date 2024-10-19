@@ -1,129 +1,18 @@
-<div class="navbar-container" [class.example-is-mobile]="mobileQuery.matches">
+<div class="navbar-container">
+  <mat-progress-bar mode="indeterminate" *ngIf="spinnerService.visibility | async"></mat-progress-bar>
 
-  <!-- Top navbar -->
-  <mat-toolbar class="navbar" color="primary">
+  <app-header></app-header>
 
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-
-    <a class="navbar-brand" [routerLink]="['/']" matTooltip="Home">
-      <h1>
-        JamTime
-      </h1>
-    </a>
-
-    <span class="navbar-spacer"></span>
-
-    <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
-      <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
-    </button>
-
-    <mat-menu #notificationMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
-      <a mat-menu-item>
-        <span>You have new tasks</span>
-      </a>
-      <a mat-menu-item>
-        <span>You have a new message</span>
-      </a>
-    </mat-menu>
-
-    <button mat-button [matMenuTriggerFor]="userMenu">
-      <mat-icon *ngIf="authService.isAuthenticated()">person</mat-icon>
-      <mat-icon *ngIf="!authService.isAuthenticated()">person_off</mat-icon>
-      <span *ngIf="authService.isAuthenticated()">
-        {{authService.emailAddress()}}
-      </span>
-    </button>
-
-    <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
-      <a mat-menu-item [routerLink]="['/account/profile']" *ngIf="authService.isAuthenticated()">
-        <mat-icon>person</mat-icon>
-        <span>Account</span>
-      </a>
-
-      <a mat-menu-item *ngIf="!authService.isAuthenticated()" (click)="signIn()">
-        <mat-icon>login</mat-icon>
-        <span>Belépés Google fiókkal...</span>
-      </a>
-
-      <a mat-menu-item *ngIf="authService.isAuthenticated()" (click)="signOut()">
-        <mat-icon>logout</mat-icon>
-        <span >Kilépés</span>
-      </a>
-    </mat-menu>
-  </mat-toolbar>
-
-  <mat-sidenav-container class="navbar-sidenav-container">
-    <!-- Side nav -->
-    <mat-sidenav #sidenav [opened]="!mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="sidenav">
-
-      <mat-nav-list>
-        <h3 mat-subheader>Foglalások</h3>
-
-        <a mat-list-item [routerLink]="['/overview']" routerLinkActive="active">
-          <mat-icon matListItemIcon>
-            calendar_month
-          </mat-icon>
-          <div> Áttekintés </div>
-        </a>
-
-        <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active">
-          <mat-icon matListItemIcon>
-            looks_two
-          </mat-icon>
-          <div> Új létrehozás </div>
-        </a>
-
-        <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active">
-          <mat-icon matListItemIcon>
-            looks_3
-          </mat-icon>
-          <div> Keresés </div>
-        </a>
-
-        <mat-divider></mat-divider>
-
-        <h3 mat-subheader>Admin</h3>
-
-        <a mat-list-item [routerLink]="['/icons']" routerLinkActive="active">
-          <mat-icon matListItemIcon>
-            looks_one
-          </mat-icon>
-          <div> Menüpont-1 </div>
-        </a>
-
-        <a mat-list-item [routerLink]="['/typography']" routerLinkActive="active">
-          <mat-icon matListItemIcon>
-            looks_two
-          </mat-icon>
-          <div> Menüpont-2 </div>
-        </a>
-
-        <mat-divider></mat-divider>
-
-        <h3 mat-subheader>Infó</h3>
-
-        <a mat-list-item [routerLink]="['/about']" routerLinkActive="active">
-          <mat-icon matListItemIcon>
-            info_outline
-          </mat-icon>
-          <div> About </div>
-        </a>
-      </mat-nav-list>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened>
+      <app-navbar></app-navbar>
     </mat-sidenav>
 
-    <!-- Main content -->
-    <mat-sidenav-content class="sidenav-content">
-
-      <div class="progress-bar-container">
-        <mat-progress-bar color="accent" mode="indeterminate" *ngIf="spinnerService.visibility | async">
-        </mat-progress-bar>
+    <!-- Content -->
+    <mat-sidenav-content>
+      <div id="content">
+        <router-outlet></router-outlet>
       </div>
-
-      <router-outlet></router-outlet>
-
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

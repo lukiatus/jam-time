@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { AsyncPipe, NgIf } from "@angular/common";
 import { MatBadge } from "@angular/material/badge";
-import { MatButton, MatIconButton } from "@angular/material/button";
+import { MatButton, MatFabButton, MatIconButton } from "@angular/material/button";
 import { MatDivider } from "@angular/material/divider";
 import { MatIcon } from "@angular/material/icon";
 import { MatLine } from "@angular/material/core";
@@ -16,6 +16,8 @@ import { Subscription } from "rxjs";
 import { MediaMatcher } from "@angular/cdk/layout";
 import { SpinnerService } from "../../core/services/spinner.service";
 import { AuthenticationService } from "../../core/services/authentication/authentication.service";
+import { HeaderComponent } from "./header/header.component";
+import { NavbarComponent } from "./navbar/navbar.component";
 
 @Component({
   selector: 'app-layout',
@@ -43,7 +45,10 @@ import { AuthenticationService } from "../../core/services/authentication/authen
     RouterLinkActive,
     RouterOutlet,
     RouterLink,
-    MatMenuTrigger
+    MatMenuTrigger,
+    MatFabButton,
+    HeaderComponent,
+    NavbarComponent
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'

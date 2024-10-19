@@ -1,0 +1,52 @@
+<mat-nav-list>
+  <h3 mat-subheader>Foglalások</h3>
+  <a mat-list-item [routerLink]="['/overview']" routerLinkActive="active">
+    <mat-icon matListItemIcon>
+      calendar_month
+    </mat-icon>
+    Áttekintés
+  </a>
+
+  <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active">
+    <mat-icon matListItemIcon>
+      looks_two
+    </mat-icon>
+    <div> Új létrehozás</div>
+  </a>
+
+  <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active">
+    <mat-icon matListItemIcon>
+      looks_3
+    </mat-icon>
+    <div> Keresés</div>
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <h3 mat-subheader>Admin</h3>
+
+  <a mat-list-item [routerLink]="['/icons']" routerLinkActive="active">
+    <mat-icon matListItemIcon>
+      looks_one
+    </mat-icon>
+    <div> Menüpont-1</div>
+  </a>
+
+  <a mat-list-item [routerLink]="['/typography']" routerLinkActive="active">
+    <mat-icon matListItemIcon>
+      looks_two
+    </mat-icon>
+    <div> Menüpont-2</div>
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <h3 mat-subheader>Infó</h3>
+
+  <a mat-list-item [routerLink]="['/about']" routerLinkActive="active">
+    <mat-icon matListItemIcon>
+      info_outline
+    </mat-icon>
+    <div> About</div>
+  </a>
+</mat-nav-list>

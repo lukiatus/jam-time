@@ -18,7 +18,7 @@ import { CustomDateFormatter } from "../../core/providers/custom-date-formatter.
 import localeHu from "dayjs/locale/hu";
 import { MatTooltip } from "@angular/material/tooltip";
 
-export function dayjsAdapterFactory() {
+export function dayjsAdapterFactory(): DateAdapter {
   dayjs.locale(localeHu);
   return adapterFactory(dayjs);
 }
@@ -53,8 +53,8 @@ export function dayjsAdapterFactory() {
   styleUrl: './reservation-overview.component.scss'
 })
 export class ReservationOverviewComponent {
-
-  public activeDayIsOpen: boolean = true;
+  protected readonly CalendarView = CalendarView;
+  public activeDayIsOpen = true;
   public view: CalendarView = CalendarView.Month;
   public viewDate: Date = new Date();
 
@@ -71,7 +71,6 @@ export class ReservationOverviewComponent {
       draggable: true,
     }
   ];
-  protected readonly CalendarView = CalendarView;
 
   public dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {
     console.log(date)

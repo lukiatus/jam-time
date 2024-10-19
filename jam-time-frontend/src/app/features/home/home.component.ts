@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from "../../core/services/spinner.service";
-import { provideHttpClient } from "@angular/common/http";
 import { AuthenticationService } from "../../core/services/authentication/authentication.service";
 
 @Component({

@@ -11,6 +11,7 @@ declare const google: any;
 export class AuthenticationService {
   public isAuthenticated = signal(false);
   public emailAddress = computed<string>(() => localStorage.getItem('userEmail') ?? '');
+  public userName = computed<string>(() => localStorage.getItem('userName') ?? '');
 
   public constructor(private httpService: AuthenticationHttpService) {
     this.loadGoogleSDK();
@@ -23,11 +24,25 @@ export class AuthenticationService {
     google.accounts.id.revoke(this.emailAddress(), (): void => {
       localStorage.removeItem('idToken');
       localStorage.removeItem('userEmail');
+      localStorage.removeItem('userName');
     });
   }
 
   public signIn(): void {
     google.accounts.id.prompt();
+  }
+
+  // TODO: make it private again!!!
+  public loadUserData(): void {
+    this.httpService.get(localStorage.getItem('idToken')).subscribe(res => {
+      console.log(res);
+    })
+  }
+
+  public valami(): void {
+    this.httpService.getValami().subscribe(() => {
+      console.log("DONE");
+    })
   }
 
   private loadGoogleSDK(): void {
@@ -44,35 +59,21 @@ export class AuthenticationService {
     });
   }
 
-  // TODO: make it private again!!!
-  public loadUserData(): void {
-    this.httpService.get(localStorage.getItem('idToken')).subscribe(res => {
-      console.log(res);
-    })
-  }
-
-  public valami(): void {
-    this.httpService.getValami().subscribe(res => {
-      console.log("DONE");
-    })
-  }
-
-
   private handleCredentialResponse(response: any): void {
     const idToken = response.credential;
-    const email = this.getEmailFromToken(idToken);
-    localStorage.setItem('idToken', idToken);
-    localStorage.setItem('userEmail', email);
+    this.storeTokenDataInLocalStore(idToken);
     this.isAuthenticated.set(true);
     this.loadUserData();
   }
 
-  private getEmailFromToken(token: string): string {
+  private storeTokenDataInLocalStore(idToken: string): void {
     try {
-      const decoded: any = jwtDecode(token);
-      return decoded.email;
+      const decoded: any = jwtDecode(idToken);
+      localStorage.setItem('userEmail', decoded.email);
+      localStorage.setItem('userName', decoded.name);
+      localStorage.setItem('idToken', idToken);
     } catch (error) {
-      return '';
+      console.error(error);
     }
   }
 }
