@@ -3,11 +3,11 @@
 @use './app-theme';
 
 $theme: mat.define-theme((
-        color: (
-                theme-type: light,
-                primary: mat.$azure-palette,
-                tertiary: mat.$blue-palette,
-        )
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  )
 ));
 
 @include mat.core();
@@ -22,4 +22,8 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.content-container {
+  margin: 50px 20px 20px 20px;
 }

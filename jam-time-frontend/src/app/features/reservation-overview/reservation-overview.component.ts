@@ -53,11 +53,9 @@ export function dayjsAdapterFactory(): DateAdapter {
   styleUrl: './reservation-overview.component.scss'
 })
 export class ReservationOverviewComponent {
-  protected readonly CalendarView = CalendarView;
   public activeDayIsOpen = true;
   public view: CalendarView = CalendarView.Month;
   public viewDate: Date = new Date();
-
   public refresh = new Subject<void>();
   public events: CalendarEvent[] = [
     {
@@ -71,17 +69,12 @@ export class ReservationOverviewComponent {
       draggable: true,
     }
   ];
+  protected readonly CalendarView = CalendarView;
 
   public dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {
     console.log(date)
     if (dayjs(date).isSame(this.viewDate, 'month')) {
-      if (
-        (dayjs(date).isSame(this.viewDate, 'day') && this.activeDayIsOpen) || events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
+      this.activeDayIsOpen = !((dayjs(date).isSame(this.viewDate, 'day') && this.activeDayIsOpen) || events.length === 0);
       this.viewDate = date;
     }
   }

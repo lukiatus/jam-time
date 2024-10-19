@@ -54,9 +54,9 @@ import { NavbarComponent } from "./navbar/navbar.component";
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent implements OnDestroy, AfterViewInit {
+  public mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;
   private autoLogoutSubscription: Subscription = new Subscription;
-  public mobileQuery: MediaQueryList;
 
   public constructor(private changeDetectorRef: ChangeDetectorRef,
                      private media: MediaMatcher,
