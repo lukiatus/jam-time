@@ -1,8 +1,7 @@
 ﻿using Ardalis.SharedKernel;
-using JamTime.Backend.Core.ContributorAggregate;
-using JamTime.Backend.UseCases.Contributors.Create;
 using MediatR;
 using System.Reflection;
+using JamTime.Backend.Core.ReservationAggregate;
 
 namespace JamTime.Backend.Web.Configurations;
 
@@ -12,8 +11,7 @@ public static class MediatrConfigs
   {
     var mediatRAssemblies = new[]
       {
-        Assembly.GetAssembly(typeof(Contributor)), // Core
-        Assembly.GetAssembly(typeof(CreateContributorCommand)) // UseCases
+        Assembly.GetAssembly(typeof(Reservation)), // Core
       };
 
     services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies!))

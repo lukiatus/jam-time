@@ -1,40 +1,17 @@
-﻿using System.Reflection;
-using Ardalis.SharedKernel;
-using JamTime.Backend.Core.ContributorAggregate;
+﻿using JamTime.Backend.Core.ReservationAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace JamTime.Backend.Infrastructure.Data;
-public class AppDbContext(DbContextOptions<AppDbContext> options,
-  IDomainEventDispatcher? dispatcher) : DbContext(options)
+
+public class AppDbContext : DbContext
 {
-  private readonly IDomainEventDispatcher? _dispatcher = dispatcher;
-
-  public DbSet<Contributor> Contributors => Set<Contributor>();
-
-  protected override void OnModelCreating(ModelBuilder modelBuilder)
+  public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
   {
-    base.OnModelCreating(modelBuilder);
-    modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    // Disable transactions because MongoDb in docker does not support it 
+    Database.AutoTransactionBehavior = AutoTransactionBehavior.Never;
   }
 
-  public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-  {
-    int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-
-    // ignore events if no dispatcher provided
-    if (_dispatcher == null) return result;
-
-    // dispatch events only if save was successful
-    var entitiesWithEvents = ChangeTracker.Entries<EntityBase>()
-        .Select(e => e.Entity)
-        .Where(e => e.DomainEvents.Any())
-        .ToArray();
-
-    await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
-
-    return result;
-  }
-
-  public override int SaveChanges() =>
-        SaveChangesAsync().GetAwaiter().GetResult();
+  public DbSet<Reservation> Reservations { get; set; }
 }
+
+

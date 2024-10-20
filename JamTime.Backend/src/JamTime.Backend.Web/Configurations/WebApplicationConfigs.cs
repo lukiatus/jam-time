@@ -1,7 +1,7 @@
 ﻿using Ardalis.ListStartupServices;
-using JamTime.Backend.Infrastructure.Data;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using JamTime.Backend.Infrastructure.Data;
 
 namespace JamTime.Backend.Web.Configurations;
 
@@ -35,7 +35,7 @@ public static class WebApplicationConfigs
   {
     using var scope = app.Services.CreateScope();
     var services = scope.ServiceProvider;
-
+    
     try
     {
       var context = services.GetRequiredService<AppDbContext>();

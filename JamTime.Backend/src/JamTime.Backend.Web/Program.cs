@@ -4,10 +4,10 @@ using FastEndpoints.Swagger;
 using Serilog;
 using Serilog.Extensions.Logging;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 var allowedOrigins = builder.Configuration.GetSection("CorsSettings:AllowedOrigins").Get<string[]>();
+
 builder.Services.AddCors(options =>
 {
   options.AddDefaultPolicy(builder =>
@@ -40,11 +40,11 @@ builder.Services.AddFastEndpoints()
     o.ShortSchemaNames = true;
   });
 
+
 var app = builder.Build();
-
 await app.UseAppMiddleware();
-
 app.Run();
+
 
 // Make the implicit Program.cs class public, so integration tests can reference the correct assembly for host building
 public partial class Program

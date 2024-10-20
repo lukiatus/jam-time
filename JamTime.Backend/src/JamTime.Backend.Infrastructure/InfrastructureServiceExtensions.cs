@@ -1,16 +1,12 @@
 ﻿using Ardalis.GuardClauses;
-using Ardalis.SharedKernel;
-using JamTime.Backend.Core.Interfaces;
-using JamTime.Backend.Core.Services;
 using JamTime.Backend.Infrastructure.Data;
-using JamTime.Backend.Infrastructure.Data.Queries;
-using JamTime.Backend.UseCases.Contributors.List;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace JamTime.Backend.Infrastructure;
+
 public static class InfrastructureServiceExtensions
 {
   public static IServiceCollection AddInfrastructureServices(
@@ -18,16 +14,10 @@ public static class InfrastructureServiceExtensions
     ConfigurationManager config,
     ILogger logger)
   {
-    string? connectionString = config.GetConnectionString("SqliteConnection");
+    string? connectionString = config.GetConnectionString("MongoConnection");
     Guard.Against.Null(connectionString);
     services.AddDbContext<AppDbContext>(options =>
-     options.UseSqlite(connectionString));
-
-    services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
-           .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
-           .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
-           .AddScoped<IDeleteContributorService, DeleteContributorService>();
-
+      options.UseMongoDB(connectionString, "JamTime"));
 
     logger.LogInformation("{Project} services registered", "Infrastructure");
 
