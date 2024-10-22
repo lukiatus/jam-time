@@ -4,7 +4,6 @@
   height: 100%;
 }
 
-
 mat-progress-bar {
   position: absolute;
   top: 0;
@@ -27,7 +26,7 @@ mat-sidenav {
 }
 
 mat-sidenav.is-collapsed {
-  width: 80px;
+  width: 60px;
 }
 
 app-header {

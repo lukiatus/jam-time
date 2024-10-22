@@ -1,18 +1,14 @@
 <mat-nav-list [class.is-collapsed]="isCollapsed()">
 
   @for (item of navigationMenuItems; track item) {
-    @if (!isCollapsed()) {
-      <h3 mat-subheader>{{ item.text }}</h3>
-    } @else {
-      <mat-divider></mat-divider>
-    }
+    <h4 mat-subheader [class.hidden]="isCollapsed()">{{ item.text }}</h4>
     @for (child of item.children; track child) {
       @if (isCollapsed()) {
-        <button mat-icon-button [routerLink]="[child.routerLink]" [matTooltip]="child.text">
+        <a mat-list-item [routerLink]="[child.routerLink]" [matTooltip]="item.text + ' - ' + child.text" [matTooltipPosition]="'right'">
           <mat-icon matListItemIcon>
             {{ child.icon }}
           </mat-icon>
-        </button>
+        </a>
       } @else {
         <a mat-list-item [routerLink]="[child.routerLink]">
           <mat-icon matListItemIcon>
