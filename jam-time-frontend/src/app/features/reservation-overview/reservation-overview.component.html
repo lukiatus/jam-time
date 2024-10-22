@@ -28,22 +28,26 @@
     </div>
 
     <div class="button-group">
-      <button mat-stroked-button color="primary"
+
+      <button mat-icon-button mwlCalendarPreviousView matTooltip="Havi nézet" color="primary"
               (click)="setView(CalendarView.Month)"
               [disabled]="view === CalendarView.Month"
-      >Hónap
+      >
+        <mat-icon>calendar_view_month</mat-icon>
       </button>
-      <button mat-stroked-button color="primary"
+
+      <button mat-icon-button mwlCalendarPreviousView matTooltip="Heti nézet" color="primary"
               (click)="setView(CalendarView.Week)"
               [disabled]="view === CalendarView.Week"
-
-      >Hét
+      >
+        <mat-icon>calendar_view_week</mat-icon>
       </button>
 
-      <button mat-stroked-button color="primary"
+      <button mat-icon-button mwlCalendarPreviousView matTooltip="Napi nézet" color="primary"
               (click)="setView(CalendarView.Day)"
               [disabled]="view === CalendarView.Day"
-      >Nap
+      >
+        <mat-icon>calendar_view_day</mat-icon>
       </button>
     </div>
   </div>
