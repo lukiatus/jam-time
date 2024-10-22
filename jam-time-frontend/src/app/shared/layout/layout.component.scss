@@ -15,7 +15,11 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
-  border-right: 1px solid #c4c6d0;
+  box-shadow: 6px 0 10px -5px rgba(0, 0, 0, 0.3);
   border-radius: 0;
   width: 240px;
+}
+
+app-header {
+  z-index: 4;
 }
