@@ -3,7 +3,7 @@
 
   <app-header (toggleSidenav)="toggleMenu(sidenav)"></app-header>
 
-  <mat-sidenav-container autosize>
+  <mat-sidenav-container #self (transitionend)="self.updateContentMargins()">
     <mat-sidenav #sidenav [opened]="!mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" [class.is-collapsed]="isMenuCollapsed">
       <app-navigation-menu [isCollapsed]="isMenuCollapsed"></app-navigation-menu>
