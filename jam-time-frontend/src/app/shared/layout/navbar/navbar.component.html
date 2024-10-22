@@ -1,47 +1,54 @@
 <mat-nav-list>
   <h3 mat-subheader>Foglalások</h3>
-  <a mat-list-item [routerLink]="['/overview']">
+  <a mat-list-item [routerLink]="['/reservations/overview']">
     <mat-icon matListItemIcon>
-      calendar_month
+      overview
     </mat-icon>
     Áttekintés
   </a>
 
-  <a mat-list-item [routerLink]="['/dashboard']">
+  <a mat-list-item [routerLink]="['/reservations/new']">
     <mat-icon matListItemIcon>
-      looks_two
+      calendar_add_on
     </mat-icon>
     <div> Új létrehozás</div>
   </a>
 
-  <a mat-list-item [routerLink]="['/dashboard']">
+  <a mat-list-item [routerLink]="['/reservations/search']">
     <mat-icon matListItemIcon>
-      looks_3
+      find_in_page
     </mat-icon>
     <div> Keresés</div>
   </a>
 
   <h3 mat-subheader>Admin</h3>
 
-  <a mat-list-item [routerLink]="['/icons']">
+  <a mat-list-item [routerLink]="['bands/']">
     <mat-icon matListItemIcon>
-      looks_one
+      adaptive_audio_mic
     </mat-icon>
-    <div> Menüpont-1</div>
+    <div> Zenekarok</div>
   </a>
 
-  <a mat-list-item [routerLink]="['/typography']">
+  <a mat-list-item [routerLink]="['/rooms']">
     <mat-icon matListItemIcon>
-      looks_two
+      home_work
     </mat-icon>
-    <div> Menüpont-2</div>
+    <div> Próbatermek</div>
+  </a>
+
+  <a mat-list-item [routerLink]="['/admin/settings']">
+    <mat-icon matListItemIcon>
+      settings
+    </mat-icon>
+    <div> Beállítások</div>
   </a>
 
   <h3 mat-subheader>Infó</h3>
 
   <a mat-list-item [routerLink]="['/about']">
     <mat-icon matListItemIcon>
-      info_outline
+      shield_question
     </mat-icon>
     <div> About</div>
   </a>
