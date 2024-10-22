@@ -29,7 +29,7 @@
     {{ authService.userName() }}
   </button>
 
-  <div id="googleLoginButton" [ngStyle]="{'visibility': authService.isAuthenticated() ? 'collapse' : 'visible'}"></div>
+  <div id="googleLoginButton" [ngStyle]="{'display': authService.isAuthenticated() ? 'none' : 'inline-block'}"></div>
 
   <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
     <a mat-menu-item [routerLink]="['/account/profile']" *ngIf="authService.isAuthenticated()">
