@@ -3,7 +3,7 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  <a [routerLink]="['/']" matTooltip="Home" color="primary">
+  <a [routerLink]="['/']">
     JamTime
   </a>
 
@@ -37,9 +37,9 @@
       <span>Account</span>
     </a>
 
-    <a mat-menu-item *ngIf="authService.isAuthenticated()" (click)="authService.signOut()">
+    <button mat-menu-item *ngIf="authService.isAuthenticated()" (click)="authService.signOut()">
       <mat-icon>logout</mat-icon>
       <span>Kilépés</span>
-    </a>
+    </button>
   </mat-menu>
 </mat-toolbar>

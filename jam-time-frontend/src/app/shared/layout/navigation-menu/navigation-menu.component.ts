@@ -3,6 +3,7 @@ import { MatDivider } from "@angular/material/divider";
 import { MatIcon } from "@angular/material/icon";
 import { MatListItem, MatListSubheaderCssMatStyler, MatNavList } from "@angular/material/list";
 import { RouterLink, RouterLinkActive } from "@angular/router";
+import { NavigationMenuItems } from './navigation-menu-items.constant';
 
 @Component({
   selector: 'app-navigation-menu',
@@ -20,4 +21,5 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
   styleUrl: './navigation-menu.component.scss'
 })
 export class NavigationMenuComponent {
+  public navigationMenuItems: any = NavigationMenuItems;
 }

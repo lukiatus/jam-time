@@ -1,55 +1,15 @@
 <mat-nav-list>
-  <h3 mat-subheader>Foglalások</h3>
-  <a mat-list-item [routerLink]="['/reservations/overview']">
-    <mat-icon matListItemIcon>
-      overview
-    </mat-icon>
-    Áttekintés
-  </a>
 
-  <a mat-list-item [routerLink]="['/reservations/new']">
-    <mat-icon matListItemIcon>
-      calendar_add_on
-    </mat-icon>
-    <div> Új létrehozás</div>
-  </a>
+  @for (item of navigationMenuItems; track item) {
+    <h3 mat-subheader>{{ item.text }}</h3>
+    @for (child of item.children; track child) {
+      <a mat-list-item [routerLink]="[child.routerLink]">
+        <mat-icon matListItemIcon>
+          {{ child.icon }}
+        </mat-icon>
+        {{ child.text }}
+      </a>
+    }
+  }
 
-  <a mat-list-item [routerLink]="['/reservations/search']">
-    <mat-icon matListItemIcon>
-      find_in_page
-    </mat-icon>
-    <div> Keresés</div>
-  </a>
-
-  <h3 mat-subheader>Admin</h3>
-
-  <a mat-list-item [routerLink]="['bands/']">
-    <mat-icon matListItemIcon>
-      adaptive_audio_mic
-    </mat-icon>
-    <div> Zenekarok</div>
-  </a>
-
-  <a mat-list-item [routerLink]="['/rooms']">
-    <mat-icon matListItemIcon>
-      home_work
-    </mat-icon>
-    <div> Próbatermek</div>
-  </a>
-
-  <a mat-list-item [routerLink]="['/admin/settings']">
-    <mat-icon matListItemIcon>
-      settings
-    </mat-icon>
-    <div> Beállítások</div>
-  </a>
-
-  <h3 mat-subheader>Infó</h3>
-
-  <a mat-list-item [routerLink]="['/about']">
-    <mat-icon matListItemIcon>
-      shield_question
-    </mat-icon>
-    <div> About</div>
-  </a>
 </mat-nav-list>
