@@ -20,6 +20,10 @@ mat-sidenav {
   width: 240px;
 }
 
+mat-sidenav.is-collapsed {
+  width: 80px;
+}
+
 app-header {
   z-index: 4;
 }

@@ -53,8 +53,9 @@ import { NavigationMenuComponent } from "./navigation-menu/navigation-menu.compo
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent implements OnDestroy, AfterViewInit {
-  public mobileQuery: MediaQueryList;
-  public spinnerService = inject(SpinnerService);
+  protected mobileQuery: MediaQueryList;
+  protected spinnerService = inject(SpinnerService);
+  protected isMenuCollapsed = false;
   private readonly _mobileQueryListener: () => void;
   private autoLogoutSubscription: Subscription = new Subscription;
   private changeDetectorRef = inject(ChangeDetectorRef);
@@ -63,15 +64,25 @@ export class LayoutComponent implements OnDestroy, AfterViewInit {
   public constructor() {
     this.mobileQuery = this.media.matchMedia('(max-width: 1000px)');
     this._mobileQueryListener = (): void => this.changeDetectorRef.detectChanges();
-    this.mobileQuery.addEventListener('', this._mobileQueryListener);
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
   }
 
   public ngOnDestroy(): void {
-    this.mobileQuery.removeEventListener('', this._mobileQueryListener);
+    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
     this.autoLogoutSubscription.unsubscribe();
   }
 
   public ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();
+  }
+
+  public toggleMenu(sidenav: MatSidenav): void {
+    if (this.mobileQuery.matches) {
+      sidenav.toggle().then();
+      this.isMenuCollapsed = false;
+    } else {
+      sidenav.open().then();
+      this.isMenuCollapsed = !this.isMenuCollapsed;
+    }
   }
 }

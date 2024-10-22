@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatDivider } from "@angular/material/divider";
 import { MatIcon } from "@angular/material/icon";
-import { MatListItem, MatListSubheaderCssMatStyler, MatNavList } from "@angular/material/list";
+import { MatListItem, MatListItemIcon, MatListSubheaderCssMatStyler, MatNavList } from "@angular/material/list";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { NavigationMenuItems } from './navigation-menu-items.constant';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-navigation-menu',
@@ -15,11 +17,15 @@ import { NavigationMenuItems } from './navigation-menu-items.constant';
     MatListSubheaderCssMatStyler,
     MatNavList,
     RouterLinkActive,
-    RouterLink
+    RouterLink,
+    MatTooltip,
+    MatIconButton,
+    MatListItemIcon
   ],
   templateUrl: './navigation-menu.component.html',
   styleUrl: './navigation-menu.component.scss'
 })
 export class NavigationMenuComponent {
+  public isCollapsed = input.required<boolean>();
   public navigationMenuItems: any = NavigationMenuItems;
 }

@@ -15,3 +15,13 @@ h3 {
 mat-nav-list {
   margin: 0 20px;
 }
+
+mat-nav-list.is-collapsed {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+
+  mat-divider:first-of-type {
+    display: none;
+  }
+}

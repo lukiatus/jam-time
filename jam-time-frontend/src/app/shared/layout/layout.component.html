@@ -1,11 +1,12 @@
-<div class="navbar-container">
+<div class="navbar-container" [class.mobile-view]="mobileQuery.matches">
   <mat-progress-bar mode="indeterminate" *ngIf="spinnerService.visibility | async"></mat-progress-bar>
 
-  <app-header (toggleSidenav)="sidenav.toggle()"></app-header>
+  <app-header (toggleSidenav)="toggleMenu(sidenav)"></app-header>
 
   <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="side" opened>
-      <app-navigation-menu></app-navigation-menu>
+    <mat-sidenav #sidenav [opened]="!mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" [class.is-collapsed]="isMenuCollapsed  ">
+      <app-navigation-menu [isCollapsed]="isMenuCollapsed"></app-navigation-menu>
     </mat-sidenav>
 
     <!-- Content -->

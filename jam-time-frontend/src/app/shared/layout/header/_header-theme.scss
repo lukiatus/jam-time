@@ -5,6 +5,18 @@
     .mat-toolbar {
       background-color: mat.get-theme-color($theme, primary-container);
       color: mat.get-theme-color($theme, primary);
+
+      .navbar-brand {
+        color: mat.get-theme-color($theme, primary);
+
+        :visited {
+          color: mat.get-theme-color($theme, primary);
+        }
+
+        :active {
+          color: mat.get-theme-color($theme, primary);
+        }
+      }
     }
   }
 }

@@ -1,14 +1,26 @@
-<mat-nav-list>
+<mat-nav-list [class.is-collapsed]="isCollapsed()">
 
   @for (item of navigationMenuItems; track item) {
-    <h3 mat-subheader>{{ item.text }}</h3>
+    @if (!isCollapsed()) {
+      <h3 mat-subheader>{{ item.text }}</h3>
+    } @else {
+      <mat-divider></mat-divider>
+    }
     @for (child of item.children; track child) {
-      <a mat-list-item [routerLink]="[child.routerLink]">
-        <mat-icon matListItemIcon>
-          {{ child.icon }}
-        </mat-icon>
-        {{ child.text }}
-      </a>
+      @if (isCollapsed()) {
+        <button mat-icon-button [routerLink]="[child.routerLink]" [matTooltip]="child.text">
+          <mat-icon matListItemIcon>
+            {{ child.icon }}
+          </mat-icon>
+        </button>
+      } @else {
+        <a mat-list-item [routerLink]="[child.routerLink]">
+          <mat-icon matListItemIcon>
+            {{ child.icon }}
+          </mat-icon>
+          {{ child.text }}
+        </a>
+      }
     }
   }
 
