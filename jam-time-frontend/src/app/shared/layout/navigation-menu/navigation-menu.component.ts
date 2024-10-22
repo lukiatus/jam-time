@@ -5,7 +5,7 @@ import { MatListItem, MatListSubheaderCssMatStyler, MatNavList } from "@angular/
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-navigation-menu',
   standalone: true,
   imports: [
     MatDivider,
@@ -16,8 +16,8 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
     RouterLinkActive,
     RouterLink
   ],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  templateUrl: './navigation-menu.component.html',
+  styleUrl: './navigation-menu.component.scss'
 })
-export class NavbarComponent {
+export class NavigationMenuComponent {
 }

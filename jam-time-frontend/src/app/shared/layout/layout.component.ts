@@ -16,7 +16,7 @@ import { Subscription } from "rxjs";
 import { MediaMatcher } from "@angular/cdk/layout";
 import { SpinnerService } from "../../core/services/spinner.service";
 import { HeaderComponent } from "./header/header.component";
-import { NavbarComponent } from "./navbar/navbar.component";
+import { NavigationMenuComponent } from "./navigation-menu/navigation-menu.component";
 
 @Component({
   selector: 'app-layout',
@@ -47,7 +47,7 @@ import { NavbarComponent } from "./navbar/navbar.component";
     MatMenuTrigger,
     MatFabButton,
     HeaderComponent,
-    NavbarComponent
+    NavigationMenuComponent
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
