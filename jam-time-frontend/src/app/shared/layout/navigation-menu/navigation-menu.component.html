@@ -1,7 +1,7 @@
 <mat-nav-list [class.is-collapsed]="isCollapsed()">
 
   @for (item of navigationMenuItems; track item) {
-    <h4 mat-subheader [class.hidden]="isCollapsed()">{{ item.text }}</h4>
+    <h4 mat-subheader [ngClass]="isCollapsed() ? 'hidden' : 'visible'">{{ item.text }}</h4>
     @for (child of item.children; track child) {
       @if (isCollapsed()) {
         <a mat-list-item [routerLink]="[child.routerLink]" [matTooltip]="item.text + ' - ' + child.text" [matTooltipPosition]="'right'">

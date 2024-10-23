@@ -6,6 +6,7 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 import { NavigationMenuItems } from './navigation-menu-items.constant';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIconButton } from '@angular/material/button';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-navigation-menu',
@@ -20,7 +21,8 @@ import { MatIconButton } from '@angular/material/button';
     RouterLink,
     MatTooltip,
     MatIconButton,
-    MatListItemIcon
+    MatListItemIcon,
+    NgClass
   ],
   templateUrl: './navigation-menu.component.html',
   styleUrl: './navigation-menu.component.scss'
