@@ -3,10 +3,6 @@
   border-radius: 4px;
   box-shadow: 0 6px 10px -5px rgba(0, 0, 0, 0.3);
 
-  a {
-    text-decoration: none;
-  }
-
   button:first-of-type {
     margin-right: 16px;
   }
@@ -14,6 +10,10 @@
   button:last-of-type {
     margin-left: 10px;
   }
+}
+
+.navbar-brand {
+  text-decoration: none;
 }
 
 .navbar-spacer {

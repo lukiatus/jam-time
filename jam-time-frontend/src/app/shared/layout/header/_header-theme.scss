@@ -17,6 +17,10 @@
           color: mat.get-theme-color($theme, primary);
         }
       }
+
+      .mat-mdc-button, .mat-mdc-icon-button {
+        color: mat.get-theme-color($theme, primary);
+      }
     }
   }
 }
