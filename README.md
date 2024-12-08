@@ -1,10 +1,8 @@
-### Frontend létrehozás parancsok
+# Az alkalmazás indítása
+
+### Frontend parancsok
 ```
-npm install -g @angular/cli
-ng new jam-time-frontend
-ng add @angular/material
-npm install angular-calendar dayjs jwt-decode
-ng add @angular-eslint/schematics
+npm ci
 ng serve --ssl
 ```
 
