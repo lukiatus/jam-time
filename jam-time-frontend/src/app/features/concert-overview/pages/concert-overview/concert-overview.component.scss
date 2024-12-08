@@ -1,0 +1,16 @@
+.content-container {
+  text-align: center;
+
+  h2 {
+    margin: 50px;
+  }
+}
+
+.concert-calendar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 24px;
+}

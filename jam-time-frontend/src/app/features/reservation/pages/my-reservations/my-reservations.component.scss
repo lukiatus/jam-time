@@ -1,0 +1,33 @@
+.mat-column-actions {
+  button {
+    position: relative;
+
+    .mat-icon {
+      width: 1rem;
+      height: 1rem;
+      font-size: 1rem;
+      position: absolute;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+}
+
+.mat-mdc-no-data-row .mat-cell {
+  display: flex;
+  align-items: center;
+  padding: 48px;
+
+  .mat-icon {
+    padding-right: 8px;
+  }
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  cursor: pointer;
+}
+
+.collapsed {
+  visibility: collapse;
+}
+
+

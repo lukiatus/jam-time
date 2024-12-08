@@ -1,0 +1,18 @@
+<div class="layout-wrapper" [class.mobile-view]="mobileQuery.matches">
+  <mat-progress-bar mode="indeterminate" *ngIf="spinnerService.isLoading()"></mat-progress-bar>
+
+  <app-header (toggleSidenav)="toggleMenu(sidenav)"></app-header>
+
+  <mat-sidenav-container #self (transitionend)="self.updateContentMargins()">
+    <mat-sidenav #sidenav [opened]="!mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" [class.is-collapsed]="isMenuCollapsed"
+                 [class.is-hidden]="!authService.currentUser()">
+      <app-navigation-menu [isCollapsed]="isMenuCollapsed"></app-navigation-menu>
+    </mat-sidenav>
+
+    <!-- Content -->
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

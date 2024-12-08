@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>Foglalás részletei</h2>
+
+<div>
+  <mat-dialog-content>
+    <div class="form-container">
+      <mat-form-field>
+        <mat-label>Dátum</mat-label>
+        <input matInput [value]="DateUtils.getDatePart(reservationData.from)" readonly>
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Kezdő időpont</mat-label>
+          <input matInput [value]="DateUtils.getTimePart(reservationData.from)" readonly>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Befejező időpont</mat-label>
+          <input matInput [value]="DateUtils.getTimePart(reservationData.to)" readonly>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Zenekar</mat-label>
+          <input matInput [value]="reservationData.bandName" readonly>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Próbaterem</mat-label>
+          <input matInput [value]="reservationData.roomName" readonly>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Státusz</mat-label>
+        <input matInput [value]="reservationData.statusName" readonly>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Megjegyzés</mat-label>
+        <textarea matInput [value]="reservationData.remark" readonly></textarea>
+      </mat-form-field>
+
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-flat-button matDialogClose (click)="onEdit()" *ngIf="isEditAllowedForUser()">
+      <mat-icon>edit</mat-icon>
+      Szerkesztés
+    </button>
+    <button mat-flat-button class="danger" (click)="onDelete()" *ngIf="isDeleteAllowedForUser()">
+      <mat-icon>delete</mat-icon>
+      Törlés
+    </button>
+    <button mat-flat-button class="danger" (click)="onReject()" *ngIf="isRejectAllowedForUser()">
+      <mat-icon>delete</mat-icon>
+      Elutasítás
+    </button>
+  </mat-dialog-actions>
+</div>

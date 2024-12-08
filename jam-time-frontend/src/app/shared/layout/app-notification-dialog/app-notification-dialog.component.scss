@@ -1,0 +1,44 @@
+.mat-mdc-dialog-title {
+  background-color: var(--mat-sys-primary-container);
+  text-align: center;
+}
+
+.mat-mdc-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  overflow-y: auto;
+}
+
+.mat-mdc-dialog-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-mdc-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:first-child {
+    padding-top: 4px;
+  }
+
+  &:last-child {
+    padding-bottom: 4px;
+  }
+}
+
+.mat-mdc-icon-button {
+  position: relative;
+  color: var(--mat-sys-primary);
+
+  mat-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}

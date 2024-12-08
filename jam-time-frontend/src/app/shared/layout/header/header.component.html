@@ -1,0 +1,41 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="toggleSidenav.emit()" *ngIf="authService.currentUser()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <a [routerLink]="['/']" class="navbar-brand">
+    JamTime
+  </a>
+
+  <span class="navbar-spacer"></span>
+
+  <button mat-icon-button *ngIf="authService.currentUser()" (click)="openNotifications()" id="notification-button"
+          [disabled]="notificationCount() === 0">
+    @if (notificationCount() > 0) {
+      <mat-icon [matBadge]="notificationCount()">notifications</mat-icon>
+
+    } @else {
+      <mat-icon>notifications</mat-icon>
+    }
+  </button>
+
+  <button mat-button [matMenuTriggerFor]="userMenu" [matTooltip]="authService.currentUser()?.email"
+          *ngIf="authService.currentUser()">
+    <mat-icon>person</mat-icon>
+    {{ authService.currentUser()?.name }}
+  </button>
+
+  <div id="googleLoginButton" [ngStyle]=loginButtonStyle></div>
+
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item *ngIf="authService.currentUser()" (click)="showAccountInfo()">
+      <mat-icon>person</mat-icon>
+      <span>Profil</span>
+    </button>
+
+    <button mat-menu-item *ngIf="authService.currentUser()" (click)="logoff()">
+      <mat-icon>logout</mat-icon>
+      <span>Kilépés</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

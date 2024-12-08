@@ -1,0 +1,27 @@
+<mat-nav-list [class.is-collapsed]="isCollapsed()">
+  @for (item of navigationMenuItems; track item) {
+    @if (authService.hasRoles(item.data?.roles)) {
+      <h4 mat-subheader [ngClass]="isCollapsed() ? 'hidden' : 'visible'">{{ item.title }}</h4>
+      @for (child of item.children; track child) {
+        @if (child.title) {
+          @if (isCollapsed()) {
+            <a mat-list-item [routerLink]="[item.path, child.path]" [matTooltip]="item.title + ' - ' + child.title"
+               [matTooltipPosition]="'right'" routerLinkActive="active">
+              <mat-icon matListItemIcon>
+                {{ child.data.icon }}
+              </mat-icon>
+            </a>
+          } @else {
+            <a mat-list-item [routerLink]="[item.path, child.path]" routerLinkActive="active">
+              <mat-icon matListItemIcon>
+                {{ child.data.icon }}
+              </mat-icon>
+              {{ child.title }}
+            </a>
+          }
+        }
+      }
+    }
+  }
+
+</mat-nav-list>

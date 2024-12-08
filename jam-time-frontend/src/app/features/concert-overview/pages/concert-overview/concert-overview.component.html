@@ -1,0 +1,9 @@
+<div class="content-container">
+  <h1>Közelgő koncertek</h1>
+  <div class="concert-calendar-container">
+    @for (concert of concerts; track concert) {
+      <app-concert-event [concertData]="concert" [editable]="canUserEdit(concert)"
+                         (onDelete)="deleteConcert($event)"></app-concert-event>
+    }
+  </div>
+</div>

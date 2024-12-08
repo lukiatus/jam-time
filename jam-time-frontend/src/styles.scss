@@ -1,0 +1,86 @@
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+html, body {
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-sidenav-content {
+  background: var(--mat-sys-background);
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px 20px 20px;
+  padding-top: 50px;
+
+  @media (max-width: 1000px) {
+    padding-top: 0;
+  }
+
+  h1 {
+    text-align: center;
+    background-color: var(--mat-sys-tertiary-container);
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 50px;
+    display: none;
+
+    @media (max-width: 1000px) {
+      display: block;
+    }
+  }
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-title {
+  background-color: var(--mat-sys-primary-container);
+  text-align: center;
+  font-size: 1.25rem !important;
+}
+
+.paginator {
+  padding-top: 24px;
+
+  .mat-mdc-paginator-container {
+    justify-content: center;
+  }
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  padding: 16px;
+
+  button {
+    align-self: start;
+  }
+}
+
+.table-container {
+  border-radius: 12px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  padding: 16px;
+
+  .toolbar {
+    display: flex;
+    margin-bottom: 16px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mat-mdc-row:hover .mat-mdc-cell {
+    background-color: var(--mat-sys-inverse-on-surface);
+  }
+}

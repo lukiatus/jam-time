@@ -1,0 +1,34 @@
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+mat-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mat-sidenav-container {
+  flex: 1;
+}
+
+mat-sidenav {
+  box-shadow: 6px 0 10px -5px rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  width: 240px;
+  transition: width 0.2s ease-in;
+}
+
+.mobile-view mat-sidenav {
+  margin-top: 64px;
+}
+
+mat-sidenav.is-collapsed {
+  width: 60px;
+}
+
+mat-sidenav.is-hidden {
+  width: 0;
+}

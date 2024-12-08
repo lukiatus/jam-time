@@ -1,0 +1,46 @@
+.mat-column-actions {
+  button {
+    position: relative;
+
+    .mat-icon {
+      width: 1rem;
+      height: 1rem;
+      font-size: 1rem;
+      position: absolute;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+}
+
+.toolbar {
+  display: flex;
+  margin-bottom: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mat-mdc-no-data-row .mat-cell {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+
+  .mat-icon {
+    padding-right: 8px;
+  }
+}
+
+.edit-button {
+  color: var(--mat-sys-primary);
+
+  &:hover {
+    background-color: var(--mat-sys-primary-container);
+  }
+}
+
+.delete-button {
+  color: var(--mat-sys-error);
+
+  &:hover {
+    background-color: var(--mat-sys-error-container);
+  }
+}

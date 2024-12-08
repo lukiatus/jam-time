@@ -1,0 +1,13 @@
+<div class="content-container">
+  <h1>Beállítások</h1>
+
+  <form class="form-container" [formGroup]="settingsForm">
+    <h5>Rendszerüzenet</h5>
+
+    <textarea formControlName="systemMessage"></textarea>
+    <button mat-flat-button (click)="onSave()">
+      <mat-icon>save</mat-icon>
+      Mentés
+    </button>
+  </form>
+</div>

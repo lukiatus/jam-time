@@ -1,0 +1,15 @@
+.hidden {
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.visible {
+  overflow: auto;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.active {
+  background-color: var(--mat-sys-primary-container);
+}
