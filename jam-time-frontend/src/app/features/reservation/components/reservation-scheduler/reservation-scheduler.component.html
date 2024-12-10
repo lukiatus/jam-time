@@ -1,0 +1,88 @@
+<div class="calendar-header">
+  <div class="button-group">
+    <button mat-icon-button mwlCalendarPreviousView matTooltip="Előző"
+            [view]="view"
+            [(viewDate)]="viewDate"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button mat-icon-button mwlCalendarToday matTooltip="Ugrás a mai napra"
+            [(viewDate)]="viewDate"
+    >
+      <mat-icon>today</mat-icon>
+    </button>
+    <button mat-icon-button mwlCalendarNextView matTooltip="Következő"
+            [view]="view"
+            [(viewDate)]="viewDate"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <div>
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'hu' }}</h3>
+  </div>
+
+  <div class="button-group">
+
+    <button mat-icon-button mwlCalendarPreviousView matTooltip="Havi nézet"
+            (click)="setView(CalendarView.Month)"
+            [disabled]="view === CalendarView.Month"
+    >
+      <mat-icon>calendar_view_month</mat-icon>
+    </button>
+
+    <button mat-icon-button mwlCalendarPreviousView matTooltip="Heti nézet"
+            (click)="setView(CalendarView.Week)"
+            [disabled]="view === CalendarView.Week"
+    >
+      <mat-icon>calendar_view_week</mat-icon>
+    </button>
+
+    <button mat-icon-button mwlCalendarPreviousView matTooltip="Napi nézet"
+            (click)="setView(CalendarView.Day)"
+            [disabled]="view === CalendarView.Day"
+    >
+      <mat-icon>calendar_view_day</mat-icon>
+    </button>
+  </div>
+</div>
+
+<ng-container [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayClicked)="jumpToDay($event.day.date)"
+    (eventClicked)="showEventDetails($event.event)"
+    (beforeViewRender)="beforeMonthViewRender($event)"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="CalendarView.Week"
+    [viewDate]="viewDate"
+    [events]="events"
+    [dayStartHour]="ReservationConstants.firstAvailableHourInDay"
+    [dayEndHour]="ReservationConstants.lastAvailableHourInDay"
+    [validateEventTimesChanged]="validateEventTimesChanged"
+    (eventClicked)="showEventDetails($event.event)"
+    (hourSegmentClicked)="addEvent($event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+    (dayHeaderClicked)="jumpToDay($event.day.date)"
+    (beforeViewRender)="beforeWeekViewRender($event)"
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="CalendarView.Day"
+    [viewDate]="viewDate"
+    [events]="events"
+    [dayStartHour]="ReservationConstants.firstAvailableHourInDay"
+    [dayEndHour]="ReservationConstants.lastAvailableHourInDay"
+    [validateEventTimesChanged]="validateEventTimesChanged"
+    (eventClicked)="showEventDetails($event.event)"
+    (hourSegmentClicked)="addEvent($event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+    (beforeViewRender)="beforeDayViewRender($event)"
+  >
+  </mwl-calendar-day-view>
+</ng-container>

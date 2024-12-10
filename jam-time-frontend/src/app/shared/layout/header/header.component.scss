@@ -1,0 +1,38 @@
+.mat-toolbar {
+  padding: 0 10px;
+  border-radius: 4px;
+  background-color: var(--mat-sys-primary-container);
+
+  .burger-menu-button.hidden {
+    visibility: hidden;
+  }
+
+  .mat-mdc-button, .mat-mdc-icon-button {
+    color: var(--mat-sys-primary);
+    margin-left: 8px;
+  }
+
+  .notification-box .mat-mdc-menu-panel {
+    width: 500px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+}
+
+.navbar-brand {
+  text-decoration: none;
+  margin-left: 24px;
+  color: var(--mat-sys-primary);
+
+  :visited {
+    color: var(--mat-sys-primary);
+  }
+
+  :active {
+    color: var(--mat-sys-primary);
+  }
+}
+
+.navbar-spacer {
+  flex: 1 1 auto;
+}

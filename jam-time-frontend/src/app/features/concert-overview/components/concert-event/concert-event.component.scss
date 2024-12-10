@@ -1,0 +1,57 @@
+.mat-mdc-card {
+  width: 480px;
+  height: 100%;
+  box-shadow: 0 8px 16px 0 var(--mat-sys-outline-variant), 0 12px 40px 0 var(--mat-sys-outline-variant);
+}
+
+.mat-mdc-card-actions.readonly {
+  visibility: hidden;
+}
+
+.mat-mdc-card-content {
+  text-align: justify;
+  height: 100%;
+}
+
+.mat-mdc-card-header {
+  .mat-mdc-card-title {
+    font-weight: bold;
+    color: var(--mat-sys-primary);
+  }
+
+  .mat-mdc-card-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .mat-mdc-card-title-group {
+    align-items: center;
+  }
+}
+
+.support-bands {
+  .mat-mdc-chip {
+    margin: 4px;
+  }
+}
+
+.flyer {
+  text-align: center;
+}
+
+.mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.mat-mdc-button {
+  color: var(--mat-sys-error);
+
+  &:hover {
+    background-color: var(--mat-sys-error-container);
+  }
+}
+
+.no-flyer {
+  font-style: italic;
+  font-size: 0.75rem;;
+}

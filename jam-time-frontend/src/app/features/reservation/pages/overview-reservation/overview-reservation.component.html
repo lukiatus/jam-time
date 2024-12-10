@@ -1,0 +1,40 @@
+<div class="content-container">
+  <h1>Foglalás áttekintés</h1>
+  @if (!reservations.length) {
+    <div class="empty-message">
+      <mat-icon>info</mat-icon>
+      <div>Nincs megjeleníthető foglalás</div>
+    </div>
+  }
+  <mat-accordion class="level-1">
+    @for (monthData of reservations; track monthData) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ monthData[0] }}</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-accordion class="level-2" displayMode="flat" hideToggle>
+          <mat-expansion-panel *ngFor="let reservation of monthData[1]">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <button mat-icon-button (click)="openReservation(reservation.reservationId); $event.stopPropagation()">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+                <div class="date">
+                  <span class="day-part">{{ reservation.from | date: 'YYYY.MM.dd.' }}</span>
+                  <span class="time-part">{{ reservation.from | date: 'HH:mm' }}
+                    - {{ reservation.to | date: 'HH:mm' }}</span>
+                </div>
+              </mat-panel-title>
+              <mat-panel-description> {{ reservation.band }}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="content" *ngIf="reservation.remark">
+              <b>Megjegyzés: </b>
+              <span>{{ reservation.remark }}</span>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-expansion-panel>
+    }
+  </mat-accordion>
+</div>

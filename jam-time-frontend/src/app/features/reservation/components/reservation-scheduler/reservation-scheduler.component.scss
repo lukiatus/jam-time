@@ -1,0 +1,105 @@
+.calendar-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  row-gap: 15px;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+
+  .mat-mdc-icon-button {
+    color: var(--mat-sys-primary);
+  }
+}
+
+::ng-deep {
+  mwl-calendar-week-view {
+    .cal-past {
+      background-color: #eee;
+      pointer-events: none;
+    }
+  }
+
+  .cal-disabled {
+    background-color: #eee;
+    pointer-events: none;
+
+    .cal-hour-segment {
+      background-color: pink;
+    }
+  }
+
+  .normal .cal-event {
+    color: var(--mat-sys-primary);
+    background-color: var(--mat-sys-primary-container);
+    border-color: var(--mat-sys-primary);
+  }
+
+  .invalid-position .cal-event {
+    color: var(--mat-sys-error);
+    background-color: var(--mat-sys-error-container);
+    border-color: var(--mat-sys-error);
+    --glow-color: var(--mat-sys-error);
+    animation: pulseGlow 2s infinite ease-in-out;
+    cursor: not-allowed;
+
+    .cal-event-title:after {
+      content: 'Időpont ütközés!!!';
+    }
+
+    .cal-event-action {
+      display: none;
+    }
+  }
+
+  .new-event .cal-event {
+    color: #e3bc08;
+    background-color: #FDF1BA;
+    border-color: #e3bc08;
+    --glow-color: #e3bc08;
+    animation: pulseGlow 2s infinite ease-in-out;
+
+    &::before, ::after, :nth-child {
+      content: '';
+      position: absolute;
+      cursor: ns-resize;
+    }
+  }
+
+  .created-event .cal-event {
+    color: var(--mat-sys-tertiary);
+    background-color: var(--mat-sys-tertiary-container);
+    border-color: var(--mat-sys-tertiary);
+  }
+}
+
+.calendar-header .button {
+  color: var(--mat-sys-primary);
+}
+
+h3 {
+  margin: 0;
+  color: var(--mat-sys-primary);
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 1px var(--glow-color);
+  }
+  50% {
+    box-shadow: 0 0 8px var(--glow-color);
+  }
+  100% {
+    box-shadow: 0 0 1px var(--glow-color);
+  }
+}

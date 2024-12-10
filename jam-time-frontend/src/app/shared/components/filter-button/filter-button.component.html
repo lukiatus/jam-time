@@ -1,0 +1,4 @@
+<div class="input-wrapper">
+  <input type="text" #textInput [placeholder]="placeholder()" (keyup)="keyup.emit($event)" (keydown.escape)="clearFilter()"/>
+  <button class="clear-button" (click)="clearFilter()">✕</button>
+</div>

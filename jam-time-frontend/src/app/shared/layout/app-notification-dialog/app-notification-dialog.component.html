@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Értesítések</h2>
+
+<mat-dialog-content>
+  @if (notifications().length === 0) {
+    <span>Nincsennek értesítéseid</span>
+  } @else {
+    @for (notification of notifications(); track notification) {
+      <mat-card appearance="outlined">
+        <mat-card-content>
+          <span>{{ notification.message }}</span>
+          <button mat-icon-button (click)="archiveNotification(notification.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-card-content>
+      </mat-card>
+    }
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)="archiveAllNotification()"
+          [disabled]="notifications().length === 0">
+    <mat-icon>playlist_remove</mat-icon>
+    Összes archiválása
+  </button>
+</mat-dialog-actions>

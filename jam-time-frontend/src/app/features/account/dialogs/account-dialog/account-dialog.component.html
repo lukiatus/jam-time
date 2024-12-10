@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Felhasználói profil</h2>
+
+<mat-dialog-content>
+  <div class="user-data">
+    <div class="card-header">Azonosító</div>
+    <span>{{ data.id }}</span>
+  </div>
+
+  <div class="user-data">
+    <div class="card-header">Zenekarok</div>
+    <mat-chip-set aria-label="Zenekarok">
+      <mat-chip *ngFor="let band of data.bands">{{ band.name }}</mat-chip>
+    </mat-chip-set>
+  </div>
+
+  <div class="user-data" *ngIf="data.roles.includes('band-leader')">
+    <div class="card-header">Vezetett zenekarok</div>
+    <mat-chip-set aria-label="Vezetett zenekarok">
+      <mat-chip *ngFor="let band of data.managedBands">{{ band.name }}</mat-chip>
+    </mat-chip-set>
+  </div>
+
+  <div class="user-data">
+    <div class="card-header">Jogosultságok</div>
+    <mat-chip-set aria-label="Jogosultságok">
+      <mat-chip *ngFor="let role of data.roles">{{ role }}</mat-chip>
+    </mat-chip-set>
+  </div>
+</mat-dialog-content>

@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Felhasználó szerkesztése</h2>
+<div>
+  <mat-dialog-content>
+    <form [formGroup]="userForm" class="form-container">
+      <mat-form-field>
+        <mat-label>Név</mat-label>
+        <input matInput formControlName="name">
+        <mat-error>Kötelező mező</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email">
+        <mat-error>Kötelező mező</mat-error>
+      </mat-form-field>
+
+      <h3>Jogosultságok</h3>
+      <mat-chip-listbox class="form-container" multiple formControlName="roles">
+        <mat-chip-option [value]="ApplicationRoles.User" [selected]="userOwnRole(ApplicationRoles.User)">
+          {{ ApplicationRoles.User.toString() }}
+        </mat-chip-option>
+        <mat-chip-option [value]="ApplicationRoles.BandLeader" [selected]="userOwnRole(ApplicationRoles.BandLeader)">
+          {{ ApplicationRoles.BandLeader.toString() }}
+        </mat-chip-option>
+        <mat-chip-option [value]="ApplicationRoles.Admin" [selected]="userOwnRole(ApplicationRoles.Admin)">
+          {{ ApplicationRoles.Admin.toString() }}
+        </mat-chip-option>
+      </mat-chip-listbox>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-flat-button [disabled]="userForm.invalid" (click)="onSave()">
+      Módosítás
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-subtitle>{{ concertData().gateOpeningTime | date: 'YYYY.MM.dd HH:mm' }}</mat-card-subtitle>
+      <mat-card-title>{{ concertData().headlinerBand }}</mat-card-title>
+      <mat-card-subtitle>{{ concertData().place }}</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-title-group>
+      <div class="support-bands">
+        @for (band of concertData().supportBands; track band) {
+          <div class="support-tag">{{ band }}</div>
+        }
+      </div>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="flyer">
+      <a [href]="concertData().flyerUrl" target="_blank" *ngIf="concertData().flyerUrl">
+        <img mat-card-xl-image [src]="concertData().flyerUrl" alt="Flyer">
+      </a>
+      <span class="no-flyer" *ngIf="!concertData().flyerUrl">Az eseményhez nem lett plakát hozzáadva.</span>
+    </div>
+    <p><b>Esemény leírása:</b></p>
+    <p>{{ concertData().description }}</p>
+  </mat-card-content>
+  <mat-card-actions align="end" [class.readonly]="!editable()">
+    <button mat-button (click)="onDelete.emit(concertData().id)">
+      <mat-icon>delete</mat-icon>
+      Törlés
+    </button>
+  </mat-card-actions>
+</mat-card>

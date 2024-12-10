@@ -1,0 +1,63 @@
+<div class="content-container">
+  <h1>Próbatermek</h1>
+  <div class="table-container">
+    <div class="toolbar">
+      <app-filter-button placeholder="Keresés..." (keyup)="applyFilter($event)"
+                         (clear)="dataSource.filter = ''"></app-filter-button>
+      <button mat-stroked-button (click)="onCreate()">
+        <mat-icon>add</mat-icon>
+        Próbaterem hozzáadása
+      </button>
+    </div>
+    <div class="table">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Próbaterem neve</th>
+          <td mat-cell *matCellDef="let element"> {{ element.name }}</td>
+        </ng-container>
+
+        <!-- Place Column -->
+        <ng-container matColumnDef="place">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Hely</th>
+          <td mat-cell *matCellDef="let element"> {{ element.place }}</td>
+        </ng-container>
+
+        <!-- Capacity Column -->
+        <ng-container matColumnDef="capacity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Kapacitás</th>
+          <td mat-cell *matCellDef="let element"> {{ element.capacity }} fő</td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button class="edit-button" mat-icon-button matTooltip="Szerkesztés" (click)="onEdit(element.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="delete-button" mat-icon-button matTooltip="Törlés" (click)="onDelete(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Table Header and Row Definition -->
+        <tr mat-header-row *matHeaderRowDef="['name', 'place', 'capacity', 'actions']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['name', 'place', 'capacity', 'actions'];"></tr>
+        <tr mat-footer-row></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            <mat-icon>info</mat-icon>
+            Nincs a keresésnek megfelelő találat...
+          </td>
+        </tr>
+      </table>
+
+      <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>

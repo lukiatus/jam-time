@@ -1,0 +1,17 @@
+h3 {
+  font-size: var(--mat-sys-headline-small);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.form-container {
+  flex-direction: column;
+}
+
+.mat-mdc-chip-remove {
+  align-self: center;
+}

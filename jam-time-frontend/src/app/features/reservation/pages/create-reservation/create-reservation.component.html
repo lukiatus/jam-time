@@ -1,0 +1,49 @@
+<div class="content-container">
+  <h1>Foglalás létrehozás</h1>
+
+  <mat-stepper linear orientation="vertical">
+    <mat-step label="Időpont választás" [stepControl]="step1">
+      <div class="form-container">
+        <app-reservation-scheduler
+          [reservations]="events()"
+          [reservationIdToJump]="currentReservationId"
+          (selectedReservationId)="openReservationById($event)"
+          (timeslotSelected)="updateSchedule($event)">
+        </app-reservation-scheduler>
+        <button mat-raised-button matStepperNext [disabled]="step1.invalid">Tovább</button>
+      </div>
+    </mat-step>
+
+    <mat-step label="Foglalás részletei" [stepControl]="step2">
+      <form [formGroup]="step2" class="form-container">
+
+        <mat-form-field>
+          <mat-label>Zenekar</mat-label>
+          <mat-select formControlName="bandId">
+            @for (band of bands; track band) {
+              <mat-option [value]="band.id">{{ band.name }}</mat-option>
+            }
+          </mat-select>
+          <mat-error>Kötelező mező</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Próbaterem</mat-label>
+          <mat-select formControlName="roomId">
+            @for (room of rooms; track room) {
+              <mat-option [value]="room.id">{{ room.name }}</mat-option>
+            }
+          </mat-select>
+          <mat-error>Kötelező mező</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Megjegyzés</mat-label>
+          <textarea matInput formControlName="remark"></textarea>
+        </mat-form-field>
+
+        <button mat-flat-button [disabled]="reservationForm.invalid" (click)="createReservation()">Létrehozás</button>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>

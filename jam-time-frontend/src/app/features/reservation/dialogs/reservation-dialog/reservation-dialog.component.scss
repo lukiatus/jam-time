@@ -1,0 +1,20 @@
+.static-form-field {
+  :first-child {
+    font-weight: bold;
+  }
+
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+
+  .mat-mdc-form-field {
+    flex: 1;
+  }
+}
+
+button.danger {
+  background-color: var(--mat-sys-error);
+}

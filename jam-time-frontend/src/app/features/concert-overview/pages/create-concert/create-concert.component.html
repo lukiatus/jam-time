@@ -1,0 +1,94 @@
+<div class="content-container">
+  <h1>Koncert létrehozás</h1>
+
+  <mat-stepper linear orientation="vertical">
+    <mat-step label="Esmény adatai" [stepControl]="step1">
+      <form [formGroup]="step1" class="form-container">
+        <mat-form-field>
+          <mat-label>Dátum</mat-label>
+          <input matInput [matDatepicker]="datePicker" formControlName="date" [min]="minDate"
+                 (click)="datePicker.open()">
+          <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #datePicker></mat-datepicker>
+          <mat-error>Kötelező mező</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Kapunyitás</mat-label>
+          <input matInput [matTimepicker]="timePicker" formControlName="gateOpeningTime">
+          <mat-timepicker-toggle matIconSuffix [for]="timePicker"/>
+          <mat-timepicker #timePicker/>
+          <mat-error>Kötelező mező</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Helyszín</mat-label>
+          <input matInput formControlName="place">
+          <mat-error>Kötelező mező</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Főzenekar</mat-label>
+          <mat-select formControlName="headLinerBand">
+            @for (band of managedBands; track band) {
+              <mat-option [value]="band.name">{{ band.name }}</mat-option>
+            }
+          </mat-select>
+          <mat-error>Kötelező mező</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button matStepperNext [disabled]="step1.invalid">Tovább</button>
+      </form>
+    </mat-step>
+
+    <mat-step label="Előzenekarok & plakát" [stepControl]="step2">
+      <form [formGroup]="step2" class="form-container">
+        <mat-form-field>
+          <mat-label>Előzenekarok</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Support band selection">
+            @for (band of supportBands; track band) {
+              <mat-chip-row (removed)="removeBand(band)">
+                {{ band }}
+                <button matChipRemove [attr.aria-label]="'remove ' + band">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            }
+          </mat-chip-grid>
+          <input #input
+                 [value]="searchText()" (input)="updateSearchText($event)"
+                 [matChipInputFor]="chipGrid"
+                 [matAutocomplete]="auto"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 (matChipInputTokenEnd)="!auto.isOpen && addBand($event)"
+                 (blur)="searchText.set('')"
+          />
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="bandSelected($event.option); input.value = ''">
+            @for (band of filteredBandNameList(); track band) {
+              <mat-option [value]="band">{{ band }}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Plakát URL</mat-label>
+          <input matInput formControlName="flyerUrl">
+        </mat-form-field>
+
+        <button mat-raised-button matStepperNext>Tovább</button>
+      </form>
+    </mat-step>
+
+    <mat-step label="Leírás" [stepControl]="step3">
+      <form [formGroup]="step3" class="form-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Leírás</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error>Kötelező mező</mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button [disabled]="concertForm.invalid" (click)="saveForm()">Mentés</button>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>
