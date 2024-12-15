@@ -93,15 +93,12 @@
       <!-- Table Header and Row Definition -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDetails(row)"></tr>
-
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">
-          <mat-icon>info</mat-icon>
-          Nincs a keresésnek megfelelő találat...
-        </td>
-      </tr>
     </table>
+
+    <div class="no-data-row" *ngIf="dataSource.filteredData.length === 0">
+      <mat-icon>info</mat-icon>
+      Nincs a keresésnek megfelelő találat...
+    </div>
 
     <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>

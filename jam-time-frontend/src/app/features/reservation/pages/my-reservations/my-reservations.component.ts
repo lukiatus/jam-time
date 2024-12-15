@@ -5,7 +5,7 @@ import {
   MatColumnDef,
   MatHeaderCell,
   MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatNoDataRow, MatRow, MatRowDef,
+  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
   MatTable, MatTableDataSource
 } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -21,28 +21,29 @@ import { FilterButtonComponent } from '../../../../shared/components/filter-butt
 import { DateUtils } from '../../../../shared/utils/date.utils';
 import { MatButton } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'app-list-bands',
-  imports: [
-    MatTable,
-    MatColumnDef,
-    MatHeaderCell,
-    MatCell,
-    MatHeaderCellDef,
-    MatCellDef,
-    MatSort,
-    MatHeaderRow,
-    MatRow,
-    MatPaginator,
-    MatRowDef,
-    MatHeaderRowDef,
-    MatIcon,
-    MatNoDataRow,
-    MatSortModule,
-    FilterButtonComponent,
-    MatButton
-  ],
+    imports: [
+        MatTable,
+        MatColumnDef,
+        MatHeaderCell,
+        MatCell,
+        MatHeaderCellDef,
+        MatCellDef,
+        MatSort,
+        MatHeaderRow,
+        MatRow,
+        MatPaginator,
+        MatRowDef,
+        MatHeaderRowDef,
+        MatIcon,
+        MatSortModule,
+        FilterButtonComponent,
+        MatButton,
+        NgIf
+    ],
   templateUrl: './my-reservations.component.html',
   standalone: true,
   styleUrl: './my-reservations.component.scss'

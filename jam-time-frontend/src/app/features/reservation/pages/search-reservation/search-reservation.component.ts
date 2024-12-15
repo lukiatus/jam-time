@@ -19,7 +19,7 @@ import {
   MatCellDef,
   MatColumnDef,
   MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatNoDataRow, MatRow, MatRowDef, MatTable,
+  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable,
   MatTableDataSource
 } from '@angular/material/table';
 import { MatSort, MatSortHeader } from '@angular/material/sort';
@@ -33,6 +33,7 @@ import {
   MatExpansionPanelHeader,
   MatExpansionPanelTitle
 } from '@angular/material/expansion';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-search-reservation-dialog',
@@ -64,11 +65,11 @@ import {
     MatSortHeader,
     MatTable,
     MatHeaderCellDef,
-    MatNoDataRow,
     MatExpansionPanel,
     MatExpansionPanelHeader,
     MatExpansionPanelTitle,
-    MatAccordion
+    MatAccordion,
+    NgIf
   ],
   templateUrl: './search-reservation.component.html',
   styleUrl: './search-reservation.component.scss'

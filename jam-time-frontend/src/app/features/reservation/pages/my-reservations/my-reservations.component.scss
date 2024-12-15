@@ -12,7 +12,7 @@
   }
 }
 
-.mat-mdc-no-data-row .mat-cell {
+.no-data-row {
   display: flex;
   align-items: center;
   padding: 48px;
@@ -29,5 +29,12 @@
 .collapsed {
   visibility: collapse;
 }
+
+@media (max-width: 1200px) {
+  .mat-column-place, .mat-column-remark {
+    display: none;
+  }
+}
+
 
 
